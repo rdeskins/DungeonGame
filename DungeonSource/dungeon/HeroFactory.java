@@ -1,3 +1,4 @@
+package dungeon;
 
 public class HeroFactory {
 	public static Hero createHero(String type,String name)
