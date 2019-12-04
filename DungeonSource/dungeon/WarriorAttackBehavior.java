@@ -1,3 +1,4 @@
+package dungeon;
 public class WarriorAttackBehavior implements AttackBehavior {
 
 	private BaseAttackBehavior baseAttack = new BaseAttackBehavior();

@@ -1,3 +1,4 @@
+package dungeon;
 public class SorceressAttackBehavior implements AttackBehavior {
 
 	private BaseAttackBehavior baseAttack = new BaseAttackBehavior();
