@@ -46,7 +46,7 @@ import java.util.Scanner;
   Once a battle concludes, the user has the option of repeating the above
 
 */
-public class Dungeon
+public class DungeonAdventure
 {
 	static Scanner kb = new Scanner(System.in);
 
