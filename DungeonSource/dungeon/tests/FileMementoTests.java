@@ -63,6 +63,8 @@ class FileMementoTests {
 			
 		assertTrue(file.exists());
 		
+		file.delete();
+		
 	}
 
 }
