@@ -16,6 +16,14 @@ public class HeroFactory {
 		{
 			hero = new Warrior(name);
 		}
+		else if(type.equals("Monk"))
+		{
+			hero = new Monk(name);
+		}
+		else if (type.equals("Dinosaur"))
+		{
+			hero = new Dinosaur(name);
+		}
 		else
 		{
 			throw new java.lang.IllegalArgumentException();
