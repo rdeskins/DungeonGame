@@ -74,17 +74,18 @@ this task
 	private static Hero chooseHero()
 	{
 		int choice = -1;
-		Hero theHero;
 
 		
 		System.out.println("Choose a hero:\n" +
 					       "1. Warrior\n" +
 						   "2. Sorceress\n" +
-						   "3. Thief");
+						   "3. Thief\n" +
+						   "4. Monk\n" +
+						   "5. Dinosaur\n");
 		
 		
 		//While the choice is outside of the range of the possible attacks array
-		while(choice < 1 || choice > 3)
+		while(choice < 1 || choice > 5)
 		{
 			try
 			{
@@ -108,6 +109,10 @@ this task
 			case 2: return HeroFactory.createHero("Sorceress", name);
 
 			case 3: return HeroFactory.createHero("Thief", name);
+			
+			case 4: return HeroFactory.createHero("Monk",name);
+			
+			case 5: return HeroFactory.createHero("Dinosaur", name);
 
 			default: System.out.println("invalid choice, returning Thief");
 			return HeroFactory.createHero("Thief", name);
