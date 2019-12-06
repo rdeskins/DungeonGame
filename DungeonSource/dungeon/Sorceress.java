@@ -21,8 +21,11 @@ public class Sorceress extends Hero
 	{	
 		super("Sorceress", 75, 5, .7, 25, 50, .3,name);
 		
-		//Adds Sorceress attacks to AttackBehavior array
-		AttackBehavior[] sorceressAttacks = {new SorceressAttackBehavior(), new SorceressIncreaseHitpointsBehavior()};
+		//Adds Sorceress attacks to AttackBehavior array, gets attacks from AttackFactory
+		AttackFactory attacks = AttackFactory.getAttackFactory();
+		
+		AttackBehavior[] sorceressAttacks = {attacks.getAttack("Sorceress Attack"), 
+				attacks.getAttack("Sorceress Increase HP")};
 		//Sets sorceress attack behaviors array
 		this.setAttackBehaviors(sorceressAttacks);
     }//end constructor

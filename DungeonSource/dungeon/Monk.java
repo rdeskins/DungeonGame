@@ -3,7 +3,11 @@ package dungeon;
 public class Monk extends Hero{
 	public Monk(String name) {
 		super("Monk",  85, 7, .8, 30, 45, .4,name);
-		AttackBehavior[] monkAttacks = {new MonkAttackBehavior(), new MonkPunchAttackBehavior()};
+		
+		AttackFactory attacks = AttackFactory.getAttackFactory();
+		
+		AttackBehavior[] monkAttacks = {attacks.getAttack("Monk Attack"), 
+				attacks.getAttack("Monk Punch Attack")};
 		this.setAttackBehaviors(monkAttacks);
 	}
 	

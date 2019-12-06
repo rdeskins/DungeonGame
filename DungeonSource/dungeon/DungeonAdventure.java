@@ -57,7 +57,7 @@ public class DungeonAdventure
 		Monster theMonster;
 		
 		do
-		{
+		{	
 		    theHero = chooseHero();
 		    theMonster = MonsterFactory.createMonster();
 			battle(theHero, theMonster);

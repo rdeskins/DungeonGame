@@ -5,7 +5,9 @@ public class Butterfly extends Monster{
 	public Butterfly() {
 		super("Steven the Butterfly",10,6,.95,.1,5,10,0,2);
 		this.healBehavior = new MonsterBasicHealBehavior();
-		this.attackBehavior = new BaseAttackBehavior();
+
+		AttackFactory attacks = AttackFactory.getAttackFactory();
+		this.attackBehavior = attacks.getAttack("Base Attack");
 	}
 	
 	public void attack(DungeonCharacter opponent) {

@@ -1,11 +1,14 @@
 package dungeon;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class AttackFactory {
 	private List<AttackBehavior> pool;
+	private static AttackFactory instance;
 	
-	public AttackFactory() {
+	private AttackFactory() {
+		this.pool = new ArrayList<AttackBehavior>();
 		pool.add(new BaseAttackBehavior());
 		pool.add(new SorceressAttackBehavior());
 		pool.add(new SorceressIncreaseHitpointsBehavior());
@@ -17,6 +20,16 @@ public class AttackFactory {
 		pool.add(new DinosaurAttackBehavior());
 		pool.add(new DinosaurStompAttackBehavior());
 		pool.add(new MockAttackBehavior());
+		
+		instance = this;
+	}
+	
+	public static AttackFactory getAttackFactory() {
+		if (instance != null) {
+			return instance;
+		}
+		
+		return new AttackFactory();
 	}
 	
 	public AttackBehavior getAttack(String name) {

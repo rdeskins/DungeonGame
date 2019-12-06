@@ -16,8 +16,10 @@ public class Thief extends Hero
 	{
 		super("Thief", 75, 6, .8, 20, 40, .5,name);
 
-		//Creating BaseAttackBehavior array,
-		AttackBehavior[] thiefAttacks = {new BaseAttackBehavior(), new ThiefSurpriseAttackBehavior()};
+		AttackFactory attacks = AttackFactory.getAttackFactory();
+		
+		AttackBehavior[] thiefAttacks = {attacks.getAttack("Thief Attack"), 
+				attacks.getAttack("Thief Surprise Attack")};
 		this.setAttackBehaviors(thiefAttacks);
     }//end constructor
 
