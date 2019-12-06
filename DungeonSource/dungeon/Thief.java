@@ -1,5 +1,4 @@
 package dungeon;
-import java.util.Scanner;
 
 /**
  * Title:

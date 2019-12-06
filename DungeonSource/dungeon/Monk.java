@@ -1,10 +1,9 @@
 package dungeon;
-//Written by Robin Deskins 12/4/19
 
 public class Monk extends Hero{
 	public Monk(String name) {
-		super("Monk",  1, 0, .0, 0, 0, .0,name);
-		AttackBehavior[] monkAttacks = {new MockAttackBehavior()};
+		super("Monk",  85, 7, .8, 30, 45, .4,name);
+		AttackBehavior[] monkAttacks = {new MonkAttackBehavior(), new MonkPunchAttackBehavior()};
 		this.setAttackBehaviors(monkAttacks);
 	}
 	
