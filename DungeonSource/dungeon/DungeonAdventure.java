@@ -169,7 +169,7 @@ user has the option of quitting.
 	{
 		Hero theHero;
 		theHero = chooseHero();
-	    System.out.println("the mighty " + theHero.name + " enters the dungeon at positon : " + theHero.getX() + ","  + theHero.getY());
+	    System.out.println("the mighty " + theHero.name + " enters the dungeon" );
 	}
 	private void saveGame()
 	{
