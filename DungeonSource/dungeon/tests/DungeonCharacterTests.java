@@ -10,12 +10,12 @@ class DungeonCharacterTests {
 	DungeonCharacter test;
 	
 	@BeforeEach
-	public void setUp() {
+	void setUp() {
 		test = new MockHero("name"); //Has starting HP of 1000
 	}
 	
 	@Test
-	public void testAddHitPoints() {
+	void testAddHitPoints() {
 		assertEquals(1000,test.getHitPoints());
 		test.addHitPoints(-10);
 		assertEquals(1000, test.getHitPoints()); //HP should not change
@@ -25,7 +25,7 @@ class DungeonCharacterTests {
 	}
 	
 	@Test
-	public void testSubtractHitPoints() {
+	void testSubtractHitPoints() {
 		assertEquals(1000,test.getHitPoints());
 		test.subtractHitPoints(-10);
 		assertEquals(1000,test.getHitPoints());
@@ -38,7 +38,7 @@ class DungeonCharacterTests {
 	}
 	
 	@Test
-	public void testIsAlive() {
+	void testIsAlive() {
 		assertTrue(test.isAlive());
 		test.subtractHitPoints(1000);
 		assertFalse(test.isAlive());
@@ -47,7 +47,7 @@ class DungeonCharacterTests {
 	}
 	
 	@Test
-	public void testAttack() {
+	void testAttack() {
 		DungeonCharacter mockMonster = new MockMonster();
 		
 		assertEquals(1000,test.getHitPoints());

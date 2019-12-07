@@ -46,6 +46,11 @@ public abstract class Hero extends DungeonCharacter
 	this.chanceToBlock = chanceToBlock;
   }
   
+  //Robin Deskins Note: This is for testing purposes to bypass the RNG of blocking/not blocking
+  public void setChanceToBlock(int blockChance) {
+	  this.chanceToBlock = blockChance;
+  }
+  
   //Doug Doner Note: Added getters and setters for numOfAttacks
   public int getnumOfAttacks() { return this.numOfAttacks; }
   public void setnumOfAttacks(final int numOfAttacks) { this.numOfAttacks = numOfAttacks; }
@@ -161,8 +166,6 @@ This method is called by: external sources
 			//Sets attackBehavior to array index that user chose
 			this.attackBehavior = attackBehaviors[choice - 1];
 
-			
-			//Calls Sorceress.attack(), passing opponent as a parameter
 			this.attack(opponent);
 
 			this.numOfAttacks--;
