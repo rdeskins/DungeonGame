@@ -44,6 +44,11 @@ public abstract class Monster extends DungeonCharacter
   {
 	  return this.chanceToHeal;
   }
+  
+  //Robin Deskins note: This is for testing purposes to bypass rng with healing
+  public void setChanceToHeal(double healChance) {
+	  this.chanceToHeal = healChance;
+  }
 
 //-----------------------------------------------------------------
   public void heal()
