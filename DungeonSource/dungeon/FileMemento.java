@@ -1,6 +1,7 @@
 package dungeon;
 
 import java.io.*;
+import java.nio.file.*;
 
 public class FileMemento implements Memento {
 
@@ -13,12 +14,9 @@ public class FileMemento implements Memento {
 	
 	@Override
 	public byte[] getSavedState() {
-		File file = new File(fileName);
 		
 		try {
-			FileInputStream fis = new FileInputStream(fileName);
-			byte[] returnBytes = fis.readAllBytes();
-			fis.close();
+			byte[] returnBytes = Files.readAllBytes(Paths.get(fileName));
 			return returnBytes;
 		}
 		catch(FileNotFoundException ex)

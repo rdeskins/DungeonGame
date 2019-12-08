@@ -3,6 +3,8 @@ package dungeon.tests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +39,7 @@ class FileMementoTests {
 	
 		try {
 			FileInputStream file = new FileInputStream("testfile.txt");
-			assertArrayEquals(file.readAllBytes(), fileMemento.getSavedState());
+			assertArrayEquals(Files.readAllBytes(Paths.get("testfile.txt")), fileMemento.getSavedState());
 			file.close();
 		}
 		catch(FileNotFoundException ex) {
