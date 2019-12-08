@@ -53,14 +53,10 @@ public class DungeonAdventure
     public static void main(String[] args)
 	{
 
-		Hero theHero;
-		Monster theMonster;
-		
+		System.out.print("Welcome to the pillars of OO a dungeon adventure game!");
 		do
-		{	
-		    theHero = chooseHero();
-		    theMonster = MonsterFactory.createMonster();
-			battle(theHero, theMonster);
+		{
+		    play();
 
 		} while (playAgain());
 
@@ -71,6 +67,7 @@ chooseHero allows the user to select a hero, creates that hero, and
 returns it.  It utilizes a polymorphic reference (Hero) to accomplish
 this task
 ---------------------------------------------------------------------*/
+    
 	private static Hero chooseHero()
 	{
 		int choice = -1;
@@ -173,5 +170,19 @@ user has the option of quitting.
 
 	}//end battle method
 
-
+	public static void play()
+	{
+		Hero theHero;
+		theHero = chooseHero();
+	    System.out.println("the mighty " + theHero.name + " enters the dungeon" );
+	}
+	private void saveGame()
+	{
+		//to be added by memento
+	}
+	private void loadGame()
+	{
+		//to be added by memento
+	}
+	
 }//end Dungeon class
