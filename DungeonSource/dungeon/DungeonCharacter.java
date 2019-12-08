@@ -46,6 +46,11 @@ public abstract class DungeonCharacter
 	protected AttackBehavior[] attackBehaviors;
 	//Doug Doner note: Adds AttackBehavior for concrete class to set at runtime
 	protected AttackBehavior attackBehavior;
+<<<<<<< HEAD
+=======
+	protected int Xpos;
+	protected int Ypos;
+>>>>>>> master
 	protected Room position;
 
 //-----------------------------------------------------------------
@@ -208,6 +213,17 @@ hero classes and externally
 
 //-----------------------------------------------------------------
 
+<<<<<<< HEAD
+=======
+	public int getX()
+	{
+		return this.Xpos;
+	}
+	public int getY()
+	{
+		return this.Ypos;
+	}
+>>>>>>> master
 	public Room getPosition()
 	{
 		return this.position;

@@ -1,15 +1,22 @@
 package dungeon;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Iterator;
 import java.util.Random;
+=======
+>>>>>>> master
 
 public class Room {
 	private int x;
 	private int y;
 	private boolean isEntrance;
 	private boolean isExit;
+<<<<<<< HEAD
 	private Monster monster = null;
+=======
+	private Monster monster;
+>>>>>>> master
 	private ArrayList<Item> items;
 	private int[] doors;
 	public Room(int x, int y)
@@ -24,6 +31,7 @@ public class Room {
 	{
 		return items.get(x);
 	}
+<<<<<<< HEAD
 	public boolean addItem(Item I)
 	{
 		Iterator <Item> itemIterator = items.iterator();
@@ -36,6 +44,11 @@ public class Room {
 		}
 		items.add(I);
 		return true;
+=======
+	public void addItem(Item I)
+	{
+		items.add(I);
+>>>>>>> master
 	}
 	public String toString()
 	{
@@ -52,7 +65,11 @@ public class Room {
 		return monster;
 	}
 	public void addMonster() {
+<<<<<<< HEAD
 		this.monster = MonsterFactory.createMonster();
+=======
+		
+>>>>>>> master
 	}
 	public int getnumItems()
 	{
@@ -60,6 +77,7 @@ public class Room {
 	}
 	public void emptyRoom()
 	{
+<<<<<<< HEAD
 		this.items.clear();
 		this.monster = null;
 	}
@@ -72,6 +90,9 @@ public class Room {
 		}
 			
 		return false;
+=======
+		
+>>>>>>> master
 	}
 	public boolean equals(Object o)
 	{
@@ -94,11 +115,14 @@ public class Room {
 	{
 		return true;
 	}
+<<<<<<< HEAD
 	public void setExit() {
 		this.isExit = true;
 	}
 	public void setEntrance() {
 		this.isEntrance = true;
 	}
+=======
+>>>>>>> master
 	
 }

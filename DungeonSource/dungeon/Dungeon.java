@@ -17,6 +17,7 @@ public class Dungeon {
 	}
 	public void createDungeon()
 	{
+<<<<<<< HEAD
 		this.dungeonRooms = new Room[5][5];
 		for(int i = 0; i < 4; i++)
 		{
@@ -136,6 +137,32 @@ public class Dungeon {
 			}
 		}
 		return true;
+=======
+		
+	}
+	public void setUpDungeon(Hero hero)
+	{
+		
+	}
+	public String toString()
+	{
+		return " ";
+	}
+	private void setExit(Room r)
+	{
+		
+	}
+	private void addPillars(Room r)
+	{
+		
+	}
+	private void addMonsters(Room r)
+	{
+		
+	}
+	private void addItems(Room r)
+	{
+>>>>>>> master
 		
 	}
 	public Memento saveDungeon()
@@ -148,5 +175,8 @@ public class Dungeon {
 		return null;
 		
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 }
