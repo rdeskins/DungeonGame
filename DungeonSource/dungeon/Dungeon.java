@@ -63,7 +63,7 @@ public class Dungeon {
 		}
 		i=0;
 		//add monsters
-		while(i > 3)
+		while(i < 3)
 		{
 			x = RAND.nextInt(4);
 			y = RAND.nextInt(4);
@@ -78,7 +78,7 @@ public class Dungeon {
 		}
 		i=0;
 		//add items
-		while(i > 4)
+		while(i < 4)
 		{
 			x = RAND.nextInt(4);
 			y = RAND.nextInt(4);
