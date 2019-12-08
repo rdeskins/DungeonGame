@@ -1,5 +1,4 @@
 package dungeon;
-import java.util.Scanner;
 
 /**
  * Title:
@@ -22,7 +21,10 @@ public class Warrior extends Hero
 		super("Warrior", 125, 4, .8, 35, 60, .2,name );
 		
 		//This is an array containing all possible attacks for a warrior
-		AttackBehavior[] warriorAttacks = {new WarriorAttackBehavior(), new WarriorCrushingBlowBehavior()};
+		AttackFactory attacks = AttackFactory.getAttackFactory();
+		
+		AttackBehavior[] warriorAttacks = {attacks.getAttack("Warrior Attack"), 
+				attacks.getAttack("Warrior Crushing Blow")};
 		
 		//This sets the attackBehaviors array in the parent DungeonCharacter class
 		this.setAttackBehaviors(warriorAttacks);
@@ -36,4 +38,4 @@ public class Warrior extends Hero
 		this.attackBehavior.attack(this, name, opponent);
 	}//end override of attack method
 
-}//end Hero class
+}//end Warrior class
