@@ -218,6 +218,7 @@ hero classes and externally
 	{
 		return this.Ypos;
 	}
+
 	public Room getPosition()
 	{
 		return this.position;
