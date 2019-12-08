@@ -1,18 +1,52 @@
 package dungeon;
 
+import java.io.*;
+import java.nio.file.*;
+
 public class FileMemento implements Memento {
 
-	private byte[] state;
+	private String fileName;
 	
-	public FileMemento(byte[] stateToSave)
+	public FileMemento(String fileName)
 	{
-		this.state = state;
+		this.fileName = fileName;
 	}
 	
 	@Override
 	public byte[] getSavedState() {
-		// TODO Auto-generated method stub
-		return this.state;
+		
+		try {
+			byte[] returnBytes = Files.readAllBytes(Paths.get(fileName));
+			return returnBytes;
+		}
+		catch(FileNotFoundException ex)
+		{
+			System.out.println(ex.getMessage());
+		}
+		catch(IOException ex)
+		{
+			System.out.println(ex.getMessage());
+		}
+		
+		return null;
+		
+	}
+
+	@Override
+	public void setState(byte[] stateToSave) {
+		
+		try {
+			FileOutputStream fos = new FileOutputStream(fileName);
+			fos.write(stateToSave);
+			fos.close();
+		}
+		catch(FileNotFoundException ex) {
+			System.out.println(ex.getMessage());
+		}
+		catch(IOException ex) {
+			System.out.println(ex.getMessage());
+		}
+		
 	}
 
 }

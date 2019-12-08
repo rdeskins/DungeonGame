@@ -33,9 +33,8 @@ public abstract class Hero extends DungeonCharacter
 {
 	protected double chanceToBlock;
 	protected int numOfAttacks;
+	protected int healPotionsFound, visionPotionsFound, pillarsFound;
 
-	
-	
 
 
 //-----------------------------------------------------------------
@@ -51,6 +50,18 @@ public abstract class Hero extends DungeonCharacter
   //Doug Doner Note: Added getters and setters for numOfAttacks
   public int getnumOfAttacks() { return this.numOfAttacks; }
   public void setnumOfAttacks(final int numOfAttacks) { this.numOfAttacks = numOfAttacks; }
+  
+  public int getHealPotionsFound() {
+	  return this.healPotionsFound;
+  }
+  
+  public int getVisionPotionsFound() {
+	  return this.visionPotionsFound;
+  }
+  
+  public int getPillarsFound() {
+	  return this.pillarsFound;
+  }
 
 /*-------------------------------------------------------
 readName obtains a name for the hero from the user

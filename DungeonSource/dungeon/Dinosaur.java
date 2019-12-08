@@ -1,10 +1,13 @@
 package dungeon;
-//Written by Robin Deskins 12/4/19
 
 public class Dinosaur extends Hero{
 	public Dinosaur(String name) {
-		super("Dinosaur",  1, 0, .0, 0, 0, .0,name);
-		AttackBehavior[] dinosaurAttacks = {new MockAttackBehavior()};
+		super("Dinosaur",  200, 2, .6, 50, 85, .6,name);
+		
+		AttackFactory attacks = AttackFactory.getAttackFactory();
+		
+		AttackBehavior[] dinosaurAttacks = {attacks.getAttack("Dinosaur Attack"), 
+				attacks.getAttack("Dinosaur Stomp Attack")};
 		this.setAttackBehaviors(dinosaurAttacks);
 	}
 	

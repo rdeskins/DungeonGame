@@ -5,7 +5,7 @@ public class MockAttackBehavior implements AttackBehavior{
 	
 	@Override
 	public void attack(DungeonCharacter hero, String displayName, DungeonCharacter opponent) {
-		System.out.println(displayName + " does some attack at " +
+		System.out.println(displayName + " does some MOCK ATTACK at " +
 				opponent.getName() + ":");
 		
 		//Call to BaseAttackBehavior

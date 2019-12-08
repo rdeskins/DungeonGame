@@ -17,7 +17,9 @@ public class Gremlin extends Monster
 	{
 		super("Gnarltooth the Gremlin", 70, 5, .8, .4, 15, 30, 20, 40);
 		this.healBehavior = new MonsterBasicHealBehavior();
-		this.attackBehavior = new BaseAttackBehavior();
+		
+		AttackFactory attacks = AttackFactory.getAttackFactory();
+		this.attackBehavior = attacks.getAttack("Base Attack");
 		
     }//end constructor
 
