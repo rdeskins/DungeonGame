@@ -36,6 +36,7 @@ public abstract class Hero extends DungeonCharacter
 	protected int healPotionsFound, visionPotionsFound, pillarsFound;
 
 
+
 //-----------------------------------------------------------------
 //calls base constructor and gets name of hero from user
   public Hero(String name, int hitPoints, int attackSpeed,
@@ -72,7 +73,6 @@ readName obtains a name for the hero from the user
 
 Receives: nothing
 Returns: nothing
-
 This method calls: nothing
 This method is called by: hero constructor
 ---------------------------------------------------------*/
@@ -176,5 +176,4 @@ This method is called by: external sources
 
 
 	}//end battleChoices
-
-}//end Hero class
+	}//end Hero class
