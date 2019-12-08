@@ -17,7 +17,6 @@ public class Dungeon {
 	}
 	public void createDungeon()
 	{
-<<<<<<< HEAD
 		this.dungeonRooms = new Room[5][5];
 		for(int i = 0; i < 4; i++)
 		{
@@ -98,14 +97,34 @@ public class Dungeon {
 
 	public  String toString()
 	{
-		String dungeon = " ";
-		for(int i = 0; i < 4; i++)
+		String dungeon = "";
+		int i =0;
+		int j =0;
+		while(i < 5)
 		{
-			for(int j = 0; j < 4; j++)
+			j =0;
+			while(j < 5)
 			{
-				dungeon += dungeonRooms[i][j].toString();
+				dungeon += dungeonRooms[j][i].StringTop();
+				j++;
 			}
-			dungeon += " /n";
+			dungeon += "\n";
+			j =0;
+			while(j < 5)
+			{
+				dungeon += dungeonRooms[j][i].stringMid();
+				j++;
+			}
+			dungeon += "\n";
+			j =0;
+			while(j < 5)
+			{
+				dungeon += dungeonRooms[j][i].stringBottom();
+				j++;
+			}
+			dungeon += "\n";
+			i++;
+			
 		}
 		return dungeon;
 		
@@ -137,32 +156,6 @@ public class Dungeon {
 			}
 		}
 		return true;
-=======
-		
-	}
-	public void setUpDungeon(Hero hero)
-	{
-		
-	}
-	public String toString()
-	{
-		return " ";
-	}
-	private void setExit(Room r)
-	{
-		
-	}
-	private void addPillars(Room r)
-	{
-		
-	}
-	private void addMonsters(Room r)
-	{
-		
-	}
-	private void addItems(Room r)
-	{
->>>>>>> master
 		
 	}
 	public Memento saveDungeon()
@@ -175,8 +168,4 @@ public class Dungeon {
 		return null;
 		
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 }

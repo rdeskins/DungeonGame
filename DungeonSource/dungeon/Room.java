@@ -1,28 +1,173 @@
 package dungeon;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.Iterator;
 import java.util.Random;
-=======
->>>>>>> master
+
 
 public class Room {
 	private int x;
 	private int y;
 	private boolean isEntrance;
 	private boolean isExit;
-<<<<<<< HEAD
 	private Monster monster = null;
-=======
-	private Monster monster;
->>>>>>> master
 	private ArrayList<Item> items;
-	private int[] doors;
+	
+	
 	public Room(int x, int y)
 	{
 		this.x = x; 
 		this.y = y; 
+	}
+	
+	public String toString()
+	{
+		String room = null;
+		
+		if(this.x ==  0)
+		{
+			if(this.y == 4)
+			{
+				room = "* -   \n*   |\n* * * ";
+			}
+			else if(this.y == 0)
+			{
+				room = "* * * \n*   |\n* -   ";
+			}
+			else
+			{
+				room = "* -   \n*   |\n* -   ";
+			}
+			
+		}
+		
+		else if(this.y == 0)
+		{
+			if(this.x == 4)
+			{
+				room = "* * * \n|   *\n  - * "; 
+			}
+			else
+			{
+				room = "* * * \n|   |\n  -   ";
+			}
+		}
+		else if(this.y == 4)
+		{
+			if(this.x == 4)
+			{
+				 room = "  - * \n|   *\n* * * ";
+			}
+			else
+			{
+				 room = "  -   \n|   |\n* * * ";
+			}
+		}
+		else if(this.x == 4)
+		{
+			room = "  - * \n|   *\n  - * ";
+		}
+		else
+		{
+			room = "  -   \n|   |\n  -   ";
+		}
+		
+		
+		return room;
+	}
+	
+	public String StringTop()
+	{
+		String room = null;
+		
+		if(x ==  0)
+		{
+		    if(y == 0)
+			{
+				room = "* * *";
+			}
+			else
+			{
+				room = "* -";
+			}
+			
+		}
+		
+		else if(y == 0)
+		{
+			room = " * *";
+		}
+		else if(x == 4)
+		{
+			room = "   - *";
+		}
+		else
+		{
+			room = "   -";
+		}
+		
+		
+		return room;
+		
+	}
+	
+	public String stringMid()
+	{
+        String room = null;
+		
+		if(x ==  0)
+		{
+			room = "*   |";
+			
+		}
+		
+	
+		else if(x == 4)
+		{
+			room = "   *";
+		}
+		else
+		{
+			room = "   |";
+		}
+		
+		
+		return room;
+	}
+	
+	public String stringBottom()
+	{
+		String room = null;
+		if(y == 4)
+		{
+			if(x == 0)
+			{
+				room = "* * *";
+			}
+			else
+			{
+				room = " * *";
+			}
+		}
+		
+		else if(x ==  0)
+		{
+				room = "* -  ";
+			
+		}
+		
+	
+		else if(x == 4)
+		{
+			room = " - *";
+		}
+		else
+		{
+			room = " -  ";
+		}
+		
+		
+		return room;
 	}
 	public Item getItem() {
 		return items.get(0);
@@ -31,7 +176,6 @@ public class Room {
 	{
 		return items.get(x);
 	}
-<<<<<<< HEAD
 	public boolean addItem(Item I)
 	{
 		Iterator <Item> itemIterator = items.iterator();
@@ -41,19 +185,9 @@ public class Room {
 				{
 					return false;
 				}
-		}
+		};
 		items.add(I);
 		return true;
-=======
-	public void addItem(Item I)
-	{
-		items.add(I);
->>>>>>> master
-	}
-	public String toString()
-	{
-		return null;
-		
 	}
 	public int getX() {
 		return x;
@@ -65,11 +199,8 @@ public class Room {
 		return monster;
 	}
 	public void addMonster() {
-<<<<<<< HEAD
+
 		this.monster = MonsterFactory.createMonster();
-=======
-		
->>>>>>> master
 	}
 	public int getnumItems()
 	{
@@ -77,7 +208,6 @@ public class Room {
 	}
 	public void emptyRoom()
 	{
-<<<<<<< HEAD
 		this.items.clear();
 		this.monster = null;
 	}
@@ -90,39 +220,25 @@ public class Room {
 		}
 			
 		return false;
-=======
-		
->>>>>>> master
 	}
 	public boolean equals(Object o)
 	{
-		return true;
+		if(o instanceof Room)
+		{
+			Room PI = (Room)o;
+			if(PI.getX() == this.x && PI.getY() == this.y)
+			{
+				return true;
+			}
+		}
+		return false; 
+
 	}
-	public boolean hasNDoor()
-	{
-		return true;
-	}
-	
-	public boolean hasSDoor() 
-	{
-		return true;
-	}
-	public boolean hasEDoor()
-	{
-		return true;
-	}
-	public boolean hasWDoor()
-	{
-		return true;
-	}
-<<<<<<< HEAD
 	public void setExit() {
 		this.isExit = true;
 	}
 	public void setEntrance() {
 		this.isEntrance = true;
 	}
-=======
->>>>>>> master
 	
 }
