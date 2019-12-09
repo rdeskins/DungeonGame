@@ -171,6 +171,11 @@ public class Dungeon implements Serializable {
 		return true;
 		
 	}
+	
+	public Room getRoom(int x, int y)
+	{
+		return dungeonRooms[y][x];
+	}
 	public Memento saveDungeon()
 	{
 		Memento fileMemento = new FileMemento("DungeonState.txt");

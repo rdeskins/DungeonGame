@@ -80,6 +80,61 @@ public class DungeonAdventure
 			dungeon.setUpDungeon(theHero);
 		
 	    System.out.println("the mighty " + theHero.name + " enters the dungeon" );
+	    boolean win = false;
+	    while(theHero.isAlive() && !win)
+	    {
+	    	System.out.println(theHero.getPosition());
+	    	if(theHero.getPosition().isEmpty())
+	    	{
+	    		System.out.print("theres nothing in this room");
+	    	}
+	    	else
+	    	{
+	    		if(theHero.getPosition().getnumItems() > 0)
+	    		{
+	    			if(theHero.getPosition().getnumItems() > 1)
+	    			{
+	    				int numItems = theHero.getPosition().getnumItems();
+	    				while(numItems > 0)
+	    				{
+	    					Item item = theHero.getPosition().getItem(numItems);
+	    					getItem(item,theHero);
+	    				}
+	    			
+	    			}	
+	    			else
+	    			{
+	    				Item item = theHero.getPosition().getItem();
+	    				getItem(item,theHero);
+	    			}
+	    		}
+	    		else if(theHero.getPosition().getMonster() != null)
+	    		{
+	    			System.out.println("a monster jumps out at" + theHero.getName());
+	    			battle(theHero,theHero.getPosition().getMonster()); 
+	    		}
+	    		else if (theHero.getPosition().isEntrance())
+	    		{
+	    			System.out.println("it's the entrance");
+	    		}
+	    		else if(theHero.getPosition().isExit())
+	    		{
+	    			if(theHero.pillarsFound == 4)
+	    			{
+	    				System.out.println("congrats! you won!");
+	    				win = true;
+	    			}
+	    			else
+	    			{
+	    				System.out.println("its the exit, you have " + theHero.getPillarsFound() + " pillars, come back when you have found all 4");
+	    			}
+	    			
+	    		}
+	    	
+	    	}
+	    	kb.nextLine(); //flush buffer
+	    	movement(theHero,dungeon);
+	    }
 	}
 /*-------------------------------------------------------------------
 chooseHero allows the user to select a hero, creates that hero, and
@@ -132,7 +187,9 @@ this task
 
 			default: System.out.println("invalid choice, returning Thief");
 			return HeroFactory.createHero("Thief", name);
-		}//end switch
+		}
+		
+		//end switch
 	}//end chooseHero method
 
 /*-------------------------------------------------------------------
@@ -188,7 +245,80 @@ user has the option of quitting.
 			System.out.println("Quitters never win ;-)");
 
 	}//end battle method
-
+	private static void getItem(Item item, Hero theHero)
+	{
+		if (item.type.equals("potion"))
+		{
+			System.out.println("the room had a potion!");
+			theHero.visionPotionsFound++;
+		}
+		
+		if (item.type.equals("pit"))
+		{
+			int damage = ((Pit) item).damage();
+			theHero.subtractHitPoints(damage);
+			System.out.println( theHero.getName() + " fell down a pit an took " + damage);
+		}
+		
+		if (item.type.equals("pillar"))
+		{
+			System.out.println("the room had a pillar!");
+			theHero.pillarsFound++;
+		}
+	}
+	
+	private static void movement(Hero theHero,Dungeon theDungeon)
+	{
+		int x = theHero.getPosition().getX();
+		int y = theHero.getPosition().getY();
+		boolean success = false;
+		while(!success)
+		{
+			System.out.println("enter a movement N,E,S or W"); 
+			String movement = kb.nextLine();
+			if(movement.equals("N")|| movement.equals("n"))
+			{		
+				y++;
+				if(y < 4)
+				{
+					success = true;
+				}
+			}
+			else if(movement.equals("E")|| movement.equals("e"))
+			{
+				x++;
+				if(x < 4)
+				{
+					success = true;
+				}
+			}
+			else if(movement.equals("S")|| movement.equals("s"))
+			{
+				y--;
+				if(y> 0)
+				{
+					success = true; 
+				}
+			}
+			else if(movement.equals("W")|| movement.equals("w"))
+			{
+				x--;
+				if(x>0)
+				{
+					success = true;
+				}
+				
+			}
+			else
+			{
+				System.out.print("try again!");
+				x = theHero.getPosition().getX();
+				y = theHero.getPosition().getY();
+				
+			}
+		}
+		theHero.setPosition(theDungeon.getRoom(x, y));
+	}
 		
 	private static void saveGame()
 	{

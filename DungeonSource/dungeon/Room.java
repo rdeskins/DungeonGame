@@ -271,7 +271,7 @@ public class Room implements Serializable {
 		Iterator <Item> itemIterator = items.iterator();
 		while(itemIterator.hasNext())
 		{
-			if(itemIterator.next().type.equals(I.type) ||itemIterator.next().type.equals("pillar"))
+			if(I.type.equals("pillar") && itemIterator.next().type.equals("pillar"))
 				{
 					return false;
 				}
@@ -329,6 +329,15 @@ public class Room implements Serializable {
 	}
 	public void setEntrance() {
 		this.isEntrance = true;
+	}
+	
+	public boolean isExit()
+	{
+		return this.isExit;
+	}
+	public boolean isEntrance()
+	{
+		return this.isEntrance;
 	}
 	
 }
