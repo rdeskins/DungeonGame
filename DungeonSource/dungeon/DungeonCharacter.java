@@ -51,8 +51,6 @@ public abstract class DungeonCharacter implements Serializable
 	protected AttackBehavior[] attackBehaviors;
 	//Doug Doner note: Adds AttackBehavior for concrete class to set at runtime
 	protected AttackBehavior attackBehavior;
-	protected int Xpos;
-	protected int Ypos;
 	protected Room position;
 
 //-----------------------------------------------------------------
@@ -216,11 +214,11 @@ hero classes and externally
 
 	public int getX()
 	{
-		return this.Xpos;
+		return this.position.getX();
 	}
 	public int getY()
 	{
-		return this.Ypos;
+		return this.position.getY();
 	}
 
 	public Room getPosition()
