@@ -54,6 +54,7 @@ public abstract class Hero extends DungeonCharacter
 					 double chanceToBlock, String displayName)
   {
 	super(displayName, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax);
+	
 	this.chanceToBlock = chanceToBlock;
   }
   
@@ -203,7 +204,7 @@ This method is called by: external sources
 		return fileMemento;
 	}
 	
-	public void loadHero(Memento memento) {
+	public Hero loadHero(Memento memento) {
 		
 		byte[] heroStateArray = memento.getSavedState();
 		
@@ -213,30 +214,15 @@ This method is called by: external sources
 			ObjectInputStream ois = new ObjectInputStream(bis);
 			Hero heroObject = (Hero)ois.readObject();
 			
-			this.chanceToBlock = heroObject.chanceToBlock;
-			this.numOfAttacks = heroObject.numOfAttacks;
-			this.healPotionsFound = heroObject.healPotionsFound;
-			this.visionPotionsFound = heroObject.visionPotionsFound;
-			this.pillarsFound = heroObject.pillarsFound;
-			
-			this.name = heroObject.name;
-			this.hitPoints = heroObject.hitPoints;
-			this.attackSpeed = heroObject.attackSpeed;
-			this.chanceToHit = heroObject.chanceToHit;
-			this.damageMin = heroObject.damageMin;
-			this.damageMax = heroObject.damageMax;
-			this.attackBehaviors = heroObject.attackBehaviors;
-			this.attackBehavior = heroObject.attackBehavior;
-			this.Xpos = heroObject.Xpos;
-			this.Ypos = heroObject.Ypos;
-			this.position = heroObject.position;
-			
+			return heroObject;
 			
 		} catch (IOException e) {
 			System.out.println("Hero loadHero IOException: " + e.getMessage());
 		} catch (ClassNotFoundException e) {
 			System.out.println("Hero loadHero ClassNotFoundException: " + e.getMessage());
 		}
+		
+		return null;
 		
 	}
 }//end Hero class

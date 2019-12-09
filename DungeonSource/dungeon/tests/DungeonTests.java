@@ -15,23 +15,12 @@ class DungeonTests {
 	void testCreateDungeonSetsFields() {
 		Dungeon dungeon = new Dungeon();
 		
-		dungeon.createDungeon();
-		
-		Room[][] dungeonRooms = dungeon.getDungeonRooms();
-		
-		for(int i = 0; i < dungeonRooms.length; i++) {
-			for(int j = 0; j < dungeonRooms[i].length; j++)
-			{
-				assertNotNull(dungeonRooms[i][j]);
-			}
-		}
+
 	}
 
 	@Test
 	void testSetUpDungeon() {
 		Dungeon dungeon = new Dungeon();
-		
-		dungeon.createDungeon();
 		
 		dungeon.setUpDungeon(new Warrior("Testy boi"));
 		
@@ -42,7 +31,6 @@ class DungeonTests {
 	void testToString() {
 		Dungeon dungeon = new Dungeon();
 		
-		dungeon.createDungeon();
 		assertNotNull(dungeon.toString());
 	}
 
@@ -50,7 +38,6 @@ class DungeonTests {
 	void testSaveDungeon() {
 		Dungeon expectDungeon = new Dungeon();
 		
-		expectDungeon.createDungeon();
 		expectDungeon.setUpDungeon(new Warrior("Testy boi"));
 		
 		Memento memento = expectDungeon.saveDungeon();
@@ -59,25 +46,12 @@ class DungeonTests {
 		
 		dungeon.loadDungeon(memento);
 		
-		Room[][] expectedRooms = expectDungeon.getDungeonRooms();
-		Room[][] dungeonRooms = dungeon.getDungeonRooms();
-		
-		for(int i = 0; i < expectedRooms.length; i++)
-		{
-			for(int j = 0; j < expectedRooms[i].length; j++)
-			{
-				assertTrue(expectedRooms[i][j].equals(dungeonRooms[i][j]));
-			}
-		}
-		
-		assertTrue(expectDungeon.getHeroLocation().equals(dungeon.getHeroLocation()));
+		assertTrue(expectDungeon.equals(dungeon));
 	}
 	
 	@Test
 	void testLoadDungeon() {
 		Dungeon dungeon = new Dungeon();
-		
-		dungeon.createDungeon();
 		
 		dungeon.setUpDungeon(new Warrior("Testy boi"));
 		
@@ -87,7 +61,7 @@ class DungeonTests {
 		
 		expectedDungeon.loadDungeon(memento);
 		
-		assertTrue(expectedDungeon.getDungeonRooms()[0][4].equals(dungeon.getDungeonRooms()[0][4]));
+		assertTrue(expectedDungeon.equals(dungeon));
 	}
 
 }

@@ -1,6 +1,8 @@
 package dungeon.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import dungeon.*;
 import org.junit.jupiter.api.Test;
@@ -47,10 +49,12 @@ class HeroTests {
 		
 		Memento fileMemento = expectedHero.saveHero();
 		
-		Hero loadedHero = new Sorceress("Test");
+		Hero loadHero = new MockHero("Test");
 		
-		loadedHero.loadHero(fileMemento);
+		Hero loadedHero = loadHero.loadHero(fileMemento);
 		
 		assertEquals(expectedHero.getName(), loadedHero.getName());
+		
+		assertTrue(loadedHero instanceof Warrior);
 	}
 }
