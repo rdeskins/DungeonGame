@@ -23,34 +23,25 @@ public class Dungeon implements Serializable {
 	
 	public Dungeon()
 	{
-		
-	}
-	
-	public Room[][] getDungeonRooms() {
-		return this.dungeonRooms;
-	}
-	
-	public Room getHeroLocation() {
-		return this.heroLocation;
-	}
-	
-	public void createDungeon()
-	{
+
 		this.dungeonRooms = new Room[5][5];
-		for(int i = 0; i < dungeonRooms.length; i++)
+		for(int i = 0; i < 5; i++)
 		{
-			for(int j = 0; j < dungeonRooms[i].length; j++)
+			for(int j = 0; j < 5; j++)
 			{
-				dungeonRooms[i][j] = new Room(j,i);
+				dungeonRooms[j][i] = new Room(j,i);
 			}
 		}
-		
+		Random RAND = new Random(); 
+		int x = RAND.nextInt(4);
+		int y = RAND.nextInt(4);
+		this.heroLocation = new Room(x,y);
+		dungeonRooms[x][y] = heroLocation;
 	}
 	public void setUpDungeon(Hero hero)
 	{
-		this.heroLocation = this.dungeonRooms[0][0];
-		Room entrance = new Room(this.heroLocation.getX(),this.heroLocation.getY());
-		
+		heroLocation.setEntrance();
+		hero.setPosition(this.heroLocation);
 		int x,y,i = 0;
 		Random RAND = new Random(); 
 		Room newRoom;
@@ -60,19 +51,20 @@ public class Dungeon implements Serializable {
 			x = RAND.nextInt(4);
 			y = RAND.nextInt(4);
 			newRoom = new Room(x,y);
-			if(!(entrance.getX() == x) && !(entrance.getY() == y))
+			if(!(heroLocation.getX() == x) && !((heroLocation.getY() == y)))
 				{
 					setExit(newRoom);
+					dungeonRooms[x][y] = newRoom;
 					success = true;
 				}
 			
 		}
 		i =0;
 		//add pillars
-		while(i > 4)
+		while(i < 4)
 		{
-			x = RAND.nextInt(4);
-			y = RAND.nextInt(4);
+			x = RAND.nextInt(5);
+			y = RAND.nextInt(5);
 			newRoom = new Room(x,y);
 			addPillars(newRoom);
 			if(dungeonRooms[x][y].isEmpty())
@@ -86,12 +78,12 @@ public class Dungeon implements Serializable {
 		//add monsters
 		while(i < 3)
 		{
-			x = RAND.nextInt(4);
-			y = RAND.nextInt(4);
-			newRoom = new Room(x, y);
-			newRoom.addMonster();
+			x = RAND.nextInt(5);
+			y = RAND.nextInt(5);
+			newRoom = new Room(x,y);
 			if(dungeonRooms[x][y].isEmpty())
 			{
+				addMonsters(newRoom);
 				dungeonRooms[x][y] = newRoom;
 				i++;
 			}
@@ -101,8 +93,8 @@ public class Dungeon implements Serializable {
 		//add items
 		while(i < 4)
 		{
-			x = RAND.nextInt(4);
-			y = RAND.nextInt(4);
+			x = RAND.nextInt(5);
+			y = RAND.nextInt(5);
 			newRoom = new Room(x,y);
 			addItems(newRoom);
 			if(dungeonRooms[x][y].isEmpty())
@@ -160,7 +152,7 @@ public class Dungeon implements Serializable {
 	}
 	private boolean addMonsters(Room r)
 	{
-		if(r.getMonster().equals(null))
+		if(r.getMonster() == null)
 		{
 			r.addMonster();
 			return true;

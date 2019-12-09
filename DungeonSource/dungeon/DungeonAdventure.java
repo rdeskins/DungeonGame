@@ -62,6 +62,25 @@ public class DungeonAdventure
 
     }//end main method
 
+	public static void play()
+	{
+		
+		
+		Hero theHero;
+		theHero = chooseHero();
+		Dungeon dungeon = new Dungeon();
+		System.out.println("New game or load?");
+		System.out.println("1: New game\n2. Load game");
+		int choice = kb.nextInt();
+		if(choice == 2) {
+			DungeonAdventure.loadGame(dungeon);
+		}
+		else {
+		}
+			dungeon.setUpDungeon(theHero);
+		
+	    System.out.println("the mighty " + theHero.name + " enters the dungeon" );
+	}
 /*-------------------------------------------------------------------
 chooseHero allows the user to select a hero, creates that hero, and
 returns it.  It utilizes a polymorphic reference (Hero) to accomplish
@@ -170,27 +189,7 @@ user has the option of quitting.
 
 	}//end battle method
 
-	public static void play()
-	{
-		Hero theHero;
-		theHero = chooseHero();
 		
-		Dungeon dungeon = new Dungeon();
-		
-		System.out.println("New game or load?");
-		System.out.println("1: New game\n2. Load game");
-		
-		int choice = kb.nextInt();
-		
-		if(choice == 2) {
-			DungeonAdventure.loadGame(dungeon);
-		}
-		else {
-			dungeon.createDungeon();
-		}
-		
-	    System.out.println("the mighty " + theHero.name + " enters the dungeon" );
-	}
 	private static void saveGame()
 	{
 		//to be added by memento

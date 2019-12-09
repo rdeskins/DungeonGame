@@ -16,7 +16,7 @@ public class Room implements Serializable {
 	private boolean isEntrance;
 	private boolean isExit;
 	private Monster monster = null;
-	private ArrayList<Item> items;
+	private ArrayList<Item> items = new ArrayList<Item>();
 	
 	
 	public Room(int x, int y)
@@ -34,15 +34,15 @@ public class Room implements Serializable {
 		{
 			if(this.y == 4)
 			{
-				room = "* -   \n*   |\n* * * ";
+				
 			}
 			else if(this.y == 0)
 			{
-				room = "* * * \n*   |\n* -   ";
+				room = "* * * \n" + this.stringMid() +"\n* -   ";
 			}
 			else
 			{
-				room = "* -   \n*   |\n* -   ";
+				room = "* -   \n"  + this.stringMid() +   "\n* -   ";
 			}
 			
 		}
@@ -51,31 +51,31 @@ public class Room implements Serializable {
 		{
 			if(this.x == 4)
 			{
-				room = "* * * \n|   *\n  - * "; 
+				room = "* * * \n" + this.stringMid() + "\n  - * "; 
 			}
 			else
 			{
-				room = "* * * \n|   |\n  -   ";
+				room = "* * * \n" + this.stringMid() + "\n  -   ";
 			}
 		}
 		else if(this.y == 4)
 		{
 			if(this.x == 4)
 			{
-				 room = "  - * \n|   *\n* * * ";
+				 room = "  - * \n"  + this.stringMid() + "*\n* * * ";
 			}
 			else
 			{
-				 room = "  -   \n|   |\n* * * ";
+				 room = "  -   \n"  + this.stringMid() + "\n* * * ";
 			}
 		}
 		else if(this.x == 4)
 		{
-			room = "  - * \n|   *\n  - * ";
+			room = "  - * \n" + this.stringMid() + "*\n  - * ";
 		}
 		else
 		{
-			room = "  -   \n|   |\n  -   ";
+			room = "  -   \n" + this.stringMid() + "\n  -   ";
 		}
 		
 		
@@ -84,7 +84,7 @@ public class Room implements Serializable {
 	
 	public String StringTop()
 	{
-		String room = null;
+		String room = "" ;
 		
 		if(x ==  0)
 		{
@@ -119,7 +119,7 @@ public class Room implements Serializable {
 	
 	public String stringMid()
 	{
-        String room = null;
+        String room = "";
 		
 		if(x ==  0)
 		{
@@ -137,13 +137,97 @@ public class Room implements Serializable {
 			room = "   |";
 		}
 		
+		if(this.isEntrance)
+		{
+			if(x == 0)
+			{
+				room = room.substring(0, 1) + " I" + room.substring(3,room.length());
+			}
+			else
+			{
+				room = room.substring(0, 1) + "I " + room.substring(3,room.length());
+			}
+		}
+		
+		else if(this.isExit)
+		{
+			if(x == 0)
+			{
+				room = room.substring(0, 1) + " O" + room.substring(3,room.length());
+			}
+			else
+			{
+				room = room.substring(0, 1) + "O " + room.substring(3,room.length());
+			}
+		}
+		
+		else if(this.monster != null)
+		{
+			if(x == 0)
+			{
+				room = room.substring(0, 1) + " X" + room.substring(3,room.length());
+			}
+			else
+			{
+				room = room.substring(0, 1) + "X " + room.substring(3,room.length());
+			}
+		}
+		
+		else if(this.isEmpty())
+		{
+			if(x == 0)
+			{
+				room = room.substring(0, 1) + " E" + room.substring(3,room.length());
+			}
+			else
+			{
+				room = room.substring(0, 1) + "E " + room.substring(3,room.length());
+			}
+		}
+		
+		else if(this.getnumItems() != 0 && this.getItem().type.equals("potion"))
+		{
+				if(x == 0)
+				{
+					room = room.substring(0, 1) + " P" + room.substring(3,room.length());
+				}
+				else
+				{
+					room = room.substring(0, 1) + "P " + room.substring(3,room.length());
+				}
+		}
+		
+		else if(this.getnumItems() != 0 && this.getItem().type.equals("pit"))
+		{
+				if(x == 0)
+				{
+					room = room.substring(0, 1) + " P" + room.substring(3,room.length());
+				}
+				else
+				{
+					room = room.substring(0, 1) + "P " + room.substring(3,room.length());
+				}
+		}
+		
+		else if(this.getnumItems() != 0 && this.getItem().type.equals("pillar"))
+		{
+				if(x == 0)
+				{
+					room = room.substring(0, 1) + " l" + room.substring(3,room.length());
+				}
+				else
+				{
+					room = room.substring(0, 1) + "l " + room.substring(3,room.length());
+				}
+		}
+		
 		
 		return room;
 	}
 	
 	public String stringBottom()
 	{
-		String room = null;
+		String room = "";
 		if(y == 4)
 		{
 			if(x == 0)
@@ -187,7 +271,7 @@ public class Room implements Serializable {
 		Iterator <Item> itemIterator = items.iterator();
 		while(itemIterator.hasNext())
 		{
-			if(itemIterator.next().type.equals(I.type))
+			if(itemIterator.next().type.equals(I.type) ||itemIterator.next().type.equals("pillar"))
 				{
 					return false;
 				}
@@ -220,7 +304,7 @@ public class Room implements Serializable {
 	
 	public boolean isEmpty()
 	{
-		if(items.size() == 0 && (monster == null) && !isEntrance && !isExit)
+		if(items.size() == 0 && monster == null && !isEntrance && !isExit)
 		{
 			return true;
 		}
