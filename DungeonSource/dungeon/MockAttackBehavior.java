@@ -1,6 +1,8 @@
 package dungeon;
 
-public class MockAttackBehavior implements AttackBehavior{
+import java.io.Serializable;
+
+public class MockAttackBehavior implements AttackBehavior, Serializable{
 	private BaseAttackBehavior baseAttack = new BaseAttackBehavior();
 	
 	@Override

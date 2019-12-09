@@ -1,5 +1,8 @@
 package dungeon;
-public class BaseAttackBehavior implements AttackBehavior {
+
+import java.io.Serializable;
+
+public class BaseAttackBehavior implements AttackBehavior, Serializable {
 
     @Override
     public void attack(DungeonCharacter hero, String displayName, DungeonCharacter opponent) {

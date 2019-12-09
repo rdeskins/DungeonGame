@@ -1,6 +1,8 @@
 package dungeon;
 
-public class MonsterBasicHealBehavior implements HealBehavior {
+import java.io.Serializable;
+
+public class MonsterBasicHealBehavior implements HealBehavior, Serializable {
 	//-----------------------------------------------------------------
 	  public void heal(Monster monster)
 	  {

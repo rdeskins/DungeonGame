@@ -1,6 +1,8 @@
 package dungeon;
 
-public class MonkPunchAttackBehavior implements AttackBehavior{
+import java.io.Serializable;
+
+public class MonkPunchAttackBehavior implements AttackBehavior, Serializable{
 	@Override
     public void attack(DungeonCharacter hero, String displayName, DungeonCharacter opponent) {
         if (Math.random() <= .6)

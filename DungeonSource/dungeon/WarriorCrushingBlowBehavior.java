@@ -1,5 +1,8 @@
 package dungeon;
-public class WarriorCrushingBlowBehavior implements AttackBehavior {
+
+import java.io.Serializable;
+
+public class WarriorCrushingBlowBehavior implements AttackBehavior, Serializable {
 
     @Override
     public void attack(DungeonCharacter hero, String displayName, DungeonCharacter opponent) {

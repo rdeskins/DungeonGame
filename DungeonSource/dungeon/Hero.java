@@ -31,6 +31,10 @@ import java.util.Scanner;
 
 public abstract class Hero extends DungeonCharacter
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected double chanceToBlock;
 	protected int numOfAttacks;
 	protected int healPotionsFound, visionPotionsFound, pillarsFound;
