@@ -1,11 +1,16 @@
 package dungeon;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
 
-public class Room {
+public class Room implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int x;
 	private int y;
 	private boolean isEntrance;
@@ -18,6 +23,7 @@ public class Room {
 	{
 		this.x = x; 
 		this.y = y; 
+		this.items = new ArrayList<Item>();
 	}
 	
 	public String toString()
@@ -214,7 +220,7 @@ public class Room {
 	
 	public boolean isEmpty()
 	{
-		if(items.size() == 0 && monster.equals(null) && !isEntrance && !isExit)
+		if(items.size() == 0 && (monster == null) && !isEntrance && !isExit)
 		{
 			return true;
 		}

@@ -1,33 +1,54 @@
 package dungeon;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Random;
 
-public class Dungeon {
+public class Dungeon implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Room [][] dungeonRooms;
 	private int potions; 
 	private int pits;
 	private int monsters;
 	private Room heroLocation;
-	private String state;
 	
 	
-	private Dungeon()
+	public Dungeon()
 	{
 		
 	}
+	
+	public Room[][] getDungeonRooms() {
+		return this.dungeonRooms;
+	}
+	
+	public Room getHeroLocation() {
+		return this.heroLocation;
+	}
+	
 	public void createDungeon()
 	{
 		this.dungeonRooms = new Room[5][5];
-		for(int i = 0; i < 4; i++)
+		for(int i = 0; i < dungeonRooms.length; i++)
 		{
-			for(int j = 0; j < 4; j++)
+			for(int j = 0; j < dungeonRooms[i].length; j++)
 			{
 				dungeonRooms[i][j] = new Room(j,i);
 			}
 		}
+		
 	}
 	public void setUpDungeon(Hero hero)
 	{
+		this.heroLocation = this.dungeonRooms[0][0];
 		Room entrance = new Room(this.heroLocation.getX(),this.heroLocation.getY());
 		
 		int x,y,i = 0;
@@ -67,7 +88,7 @@ public class Dungeon {
 		{
 			x = RAND.nextInt(4);
 			y = RAND.nextInt(4);
-			newRoom = new Room(x,y);
+			newRoom = new Room(x, y);
 			newRoom.addMonster();
 			if(dungeonRooms[x][y].isEmpty())
 			{
@@ -105,21 +126,21 @@ public class Dungeon {
 			j =0;
 			while(j < 5)
 			{
-				dungeon += dungeonRooms[j][i].StringTop();
+				dungeon += dungeonRooms[i][j].StringTop();
 				j++;
 			}
 			dungeon += "\n";
 			j =0;
 			while(j < 5)
 			{
-				dungeon += dungeonRooms[j][i].stringMid();
+				dungeon += dungeonRooms[i][j].stringMid();
 				j++;
 			}
 			dungeon += "\n";
 			j =0;
 			while(j < 5)
 			{
-				dungeon += dungeonRooms[j][i].stringBottom();
+				dungeon += dungeonRooms[i][j].stringBottom();
 				j++;
 			}
 			dungeon += "\n";
@@ -160,12 +181,48 @@ public class Dungeon {
 	}
 	public Memento saveDungeon()
 	{
-		return null;
+		Memento fileMemento = new FileMemento("DungeonState.txt");
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		ObjectOutput out = null;
+		try {
+			out = new ObjectOutputStream(bos);   
+			  out.writeObject(this);
+			  out.flush();
+			  byte[] yourBytes = bos.toByteArray();
+			fileMemento.setState(yourBytes);
+		}
+		catch(IOException ex) {
+			System.out.println("IO Exception Memento.saveDungeon: " + ex.getMessage());
+		}
+		return fileMemento;
+
 		
 	}
-	public Memento loadDungeon()
+	public void loadDungeon(Memento memento)
 	{
-		return null;
+		byte[] dungeonStateArray = memento.getSavedState();
+		
+		
+		ByteArrayInputStream bis = new ByteArrayInputStream(dungeonStateArray);
+		
+		try {
+			ObjectInputStream ois = new ObjectInputStream(bis);
+			Dungeon dungeonObject = (Dungeon)ois.readObject();
+			
+			this.dungeonRooms = dungeonObject.dungeonRooms;
+			this.heroLocation = dungeonObject.heroLocation;
+			
+			this.monsters = dungeonObject.monsters;
+			
+			this.pits = dungeonObject.pits;
+			
+			this.potions = dungeonObject.potions;
+			
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 }
