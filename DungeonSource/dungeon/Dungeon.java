@@ -41,7 +41,7 @@ public class Dungeon implements Serializable {
 	public void setUpDungeon(Hero hero)
 	{
 		heroLocation.setEntrance();
-		hero.setPosition(this.heroLocation);
+		hero.setPosition(this.heroLocation,this);
 		int x,y,i = 0;
 		Random RAND = new Random(); 
 		Room newRoom;
@@ -175,6 +175,15 @@ public class Dungeon implements Serializable {
 	public Room getRoom(int x, int y)
 	{
 		return dungeonRooms[y][x];
+	}
+	public void setRoom(Room room)
+	{
+		
+		dungeonRooms[room.getY()][room.getX()] = room;
+	}
+	public void updateHeroLocation(Room room)
+	{
+		this.heroLocation = room;
 	}
 	public Memento saveDungeon()
 	{

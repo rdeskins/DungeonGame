@@ -107,11 +107,13 @@ public class DungeonAdventure
 	    				Item item = theHero.getPosition().getItem();
 	    				getItem(item,theHero);
 	    			}
+	    			theHero.getPosition().emptyRoom();
 	    		}
 	    		else if(theHero.getPosition().getMonster() != null)
 	    		{
 	    			System.out.println("a monster jumps out at" + theHero.getName());
 	    			battle(theHero,theHero.getPosition().getMonster()); 
+	    			theHero.getPosition().emptyRoom();
 	    		}
 	    		else if (theHero.getPosition().isEntrance())
 	    		{
@@ -317,7 +319,7 @@ user has the option of quitting.
 				
 			}
 		}
-		theHero.setPosition(theDungeon.getRoom(x, y));
+		theHero.setPosition(theDungeon.getRoom(x, y),theDungeon);
 	}
 		
 	private static void saveGame()

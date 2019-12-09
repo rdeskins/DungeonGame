@@ -228,11 +228,12 @@ hero classes and externally
 		return this.position;
 	}
 	
-	public void setPosition(Room r)
+	public void setPosition(Room r,Dungeon dungeon)
 	{
 		this.position = r;
 		this.Xpos = r.getX();
-		this.Ypos = r.getY(); 
+		this.Ypos = r.getY();
+		dungeon.updateHeroLocation(r);
 	}
 
 }//end class Character
