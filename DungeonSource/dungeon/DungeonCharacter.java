@@ -223,5 +223,12 @@ hero classes and externally
 	{
 		return this.position;
 	}
+	
+	public void setPosition(Room r)
+	{
+		this.position = r;
+		this.Xpos = r.getX();
+		this.Ypos = r.getY(); 
+	}
 
 }//end class Character
