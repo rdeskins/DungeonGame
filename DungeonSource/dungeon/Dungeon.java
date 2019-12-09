@@ -37,7 +37,6 @@ public class Dungeon implements Serializable {
 		int y = RAND.nextInt(4);
 		this.heroLocation = new Room(x,y);
 		dungeonRooms[x][y] = heroLocation;
-		
 	}
 	public void setUpDungeon(Hero hero)
 	{
