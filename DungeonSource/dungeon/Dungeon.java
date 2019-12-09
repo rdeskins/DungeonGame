@@ -1,14 +1,24 @@
 package dungeon;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Random;
 
-public class Dungeon {
+public class Dungeon implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Room [][] dungeonRooms;
 	private int potions; 
 	private int pits;
 	private int monsters;
 	private Room heroLocation;
-	private String state;
 	
 	
 	public Dungeon()
@@ -109,21 +119,21 @@ public class Dungeon {
 			j =0;
 			while(j < 5)
 			{
-				dungeon += dungeonRooms[j][i].StringTop();
+				dungeon += dungeonRooms[i][j].StringTop();
 				j++;
 			}
 			dungeon += "\n";
 			j =0;
 			while(j < 5)
 			{
-				dungeon += dungeonRooms[j][i].stringMid();
+				dungeon += dungeonRooms[i][j].stringMid();
 				j++;
 			}
 			dungeon += "\n";
 			j =0;
 			while(j < 5)
 			{
-				dungeon += dungeonRooms[j][i].stringBottom();
+				dungeon += dungeonRooms[i][j].stringBottom();
 				j++;
 			}
 			dungeon += "\n";
@@ -164,12 +174,48 @@ public class Dungeon {
 	}
 	public Memento saveDungeon()
 	{
-		return null;
+		Memento fileMemento = new FileMemento("DungeonState.txt");
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		ObjectOutput out = null;
+		try {
+			out = new ObjectOutputStream(bos);   
+			  out.writeObject(this);
+			  out.flush();
+			  byte[] yourBytes = bos.toByteArray();
+			fileMemento.setState(yourBytes);
+		}
+		catch(IOException ex) {
+			System.out.println("IO Exception Memento.saveDungeon: " + ex.getMessage());
+		}
+		return fileMemento;
+
 		
 	}
-	public Memento loadDungeon()
+	public void loadDungeon(Memento memento)
 	{
-		return null;
+		byte[] dungeonStateArray = memento.getSavedState();
+		
+		
+		ByteArrayInputStream bis = new ByteArrayInputStream(dungeonStateArray);
+		
+		try {
+			ObjectInputStream ois = new ObjectInputStream(bis);
+			Dungeon dungeonObject = (Dungeon)ois.readObject();
+			
+			this.dungeonRooms = dungeonObject.dungeonRooms;
+			this.heroLocation = dungeonObject.heroLocation;
+			
+			this.monsters = dungeonObject.monsters;
+			
+			this.pits = dungeonObject.pits;
+			
+			this.potions = dungeonObject.potions;
+			
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 }

@@ -1,5 +1,8 @@
 package dungeon;
-public class WarriorAttackBehavior implements AttackBehavior {
+
+import java.io.Serializable;
+
+public class WarriorAttackBehavior implements AttackBehavior, Serializable {
 
 	private BaseAttackBehavior baseAttack = new BaseAttackBehavior();
 	

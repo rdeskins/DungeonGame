@@ -1,5 +1,8 @@
 package dungeon;
-public class SorceressIncreaseHitpointsBehavior implements AttackBehavior {
+
+import java.io.Serializable;
+
+public class SorceressIncreaseHitpointsBehavior implements AttackBehavior, Serializable {
 
 	@Override
 	public void attack(DungeonCharacter hero, String displayName, DungeonCharacter opponent) {

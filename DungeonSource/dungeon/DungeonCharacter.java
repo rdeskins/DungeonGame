@@ -1,5 +1,6 @@
 package dungeon;
 
+import java.io.Serializable;
 
 /**
  * Title: DungeonCharacter.java
@@ -34,9 +35,13 @@ package dungeon;
  * @version 1.0
  */
 
-public abstract class DungeonCharacter
+public abstract class DungeonCharacter implements Serializable
 {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String name;
 	protected int hitPoints;
 	protected int attackSpeed;

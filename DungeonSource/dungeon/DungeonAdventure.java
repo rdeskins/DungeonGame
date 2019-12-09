@@ -179,13 +179,29 @@ user has the option of quitting.
 
 	}//end battle method
 
-	private void saveGame()
+		Hero theHero;
+		theHero = chooseHero();
+		Dungeon dungeon = new Dungeon();
+		System.out.println("New game or load?");
+		System.out.println("1: New game\n2. Load game");
+		int choice = kb.nextInt();
+		if(choice == 2) {
+			DungeonAdventure.loadGame(dungeon);
+		}
+		else {
+		}
+			dungeon.createDungeon();
+		
+	    System.out.println("the mighty " + theHero.name + " enters the dungeon" );
+	}
+	private static void saveGame()
 	{
 		//to be added by memento
 	}
-	private void loadGame()
+	private static void loadGame(Dungeon dungeon)
 	{
-		//to be added by memento
+		Memento fileMemento = new FileMemento("DungeonState.txt");
+		dungeon.loadDungeon(fileMemento);
 	}
 	
 }//end Dungeon class
