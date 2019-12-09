@@ -57,7 +57,6 @@ public class DungeonAdventure
 		do
 		{
 		    play();
-
 		} while (playAgain());
 
     }//end main method
@@ -310,12 +309,16 @@ user has the option of quitting.
 
 	private static void saveGame()
 	{
-		//to be added by memento
+		Memento dungeonFileMemento = dungeon.saveDungeon();
+		Memento heroFileMemento = hero.saveHero();
 	}
-	private static void loadGame(Dungeon dungeon)
+	private static void loadGame(Dungeon dungeon, Hero hero)
 	{
-		Memento fileMemento = new FileMemento("DungeonState.txt");
-		dungeon.loadDungeon(fileMemento);
+		Memento dungeonFileMemento = new FileMemento("DungeonState.txt");
+		Memento heroFileMemento = new FileMemento("HeroState.txt");
+		
+		dungeon.loadDungeon(dungeonFileMemento);
+		hero.loadHero(heroFileMemento);
 	}
 	
 }//end Dungeon class

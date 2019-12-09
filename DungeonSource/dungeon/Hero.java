@@ -1,4 +1,10 @@
 package dungeon;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 /**
@@ -178,21 +184,59 @@ This method is called by: external sources
 
 		} while(numOfAttacks > 0 && opponent.isAlive());
 
-
 	}//end battleChoices
 	
-	@Override
-	public String toString() {
-		return "Name: " + getName()
-				+ "\nHit Points: " + getHitPoints()
-				+ "\nTotal Healing Potions: " + getHealPotionsFound()
-				+ "\nTotal Vision Potions: " + getVisionPotionsFound()
-				+ "\nTotal Pillars of OO Found: " + getPillarsFound();
+	public Memento saveHero() {
+		Memento fileMemento = new FileMemento("HeroState.txt");
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		ObjectOutput out = null;
+		try {
+			out = new ObjectOutputStream(bos);   
+			  out.writeObject(this);
+			  out.flush();
+			  byte[] heroBytes = bos.toByteArray();
+			fileMemento.setState(heroBytes);
+		}
+		catch(IOException ex) {
+			System.out.println("IO Exception Hero saveHero: " + ex.getMessage());
+		}
+		return fileMemento;
 	}
-
-	public void setPosition(Room room, Dungeon dungeon) {
 	
-		this.position = room;
-		dungeon.updateHeroLocation(room);
+	public void loadHero(Memento memento) {
+		
+		byte[] heroStateArray = memento.getSavedState();
+		
+		ByteArrayInputStream bis = new ByteArrayInputStream(heroStateArray);
+		
+		try {
+			ObjectInputStream ois = new ObjectInputStream(bis);
+			Hero heroObject = (Hero)ois.readObject();
+			
+			this.chanceToBlock = heroObject.chanceToBlock;
+			this.numOfAttacks = heroObject.numOfAttacks;
+			this.healPotionsFound = heroObject.healPotionsFound;
+			this.visionPotionsFound = heroObject.visionPotionsFound;
+			this.pillarsFound = heroObject.pillarsFound;
+			
+			this.name = heroObject.name;
+			this.hitPoints = heroObject.hitPoints;
+			this.attackSpeed = heroObject.attackSpeed;
+			this.chanceToHit = heroObject.chanceToHit;
+			this.damageMin = heroObject.damageMin;
+			this.damageMax = heroObject.damageMax;
+			this.attackBehaviors = heroObject.attackBehaviors;
+			this.attackBehavior = heroObject.attackBehavior;
+			this.Xpos = heroObject.Xpos;
+			this.Ypos = heroObject.Ypos;
+			this.position = heroObject.position;
+			
+			
+		} catch (IOException e) {
+			System.out.println("Hero loadHero IOException: " + e.getMessage());
+		} catch (ClassNotFoundException e) {
+			System.out.println("Hero loadHero ClassNotFoundException: " + e.getMessage());
+		}
+		
 	}
 }//end Hero class

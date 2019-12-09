@@ -40,4 +40,17 @@ class HeroTests {
 	
 	//No Test for battlechoices as of now, unsure how to test for it
 
+	
+	@Test
+	void heroSaveHeroSavesState() {
+		Hero expectedHero = new Warrior("Doug");
+		
+		Memento fileMemento = expectedHero.saveHero();
+		
+		Hero loadedHero = new Sorceress("Test");
+		
+		loadedHero.loadHero(fileMemento);
+		
+		assertEquals(expectedHero.getName(), loadedHero.getName());
+	}
 }
