@@ -1,5 +1,8 @@
 package dungeon;
-public class ThiefSurpriseAttackBehavior implements AttackBehavior {
+
+import java.io.Serializable;
+
+public class ThiefSurpriseAttackBehavior implements AttackBehavior, Serializable{
 
 	private BaseAttackBehavior baseAttack = new BaseAttackBehavior();
 	

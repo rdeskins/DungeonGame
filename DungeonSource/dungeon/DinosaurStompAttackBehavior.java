@@ -1,6 +1,8 @@
 package dungeon;
 
-public class DinosaurStompAttackBehavior implements AttackBehavior{
+import java.io.Serializable;
+
+public class DinosaurStompAttackBehavior implements AttackBehavior, Serializable{
 	@Override
     public void attack(DungeonCharacter hero, String displayName, DungeonCharacter opponent) {
         if (Math.random() <= .2)
