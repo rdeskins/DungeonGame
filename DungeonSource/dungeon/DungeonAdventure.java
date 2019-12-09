@@ -64,12 +64,22 @@ public class DungeonAdventure
 
 	public static void play()
 	{
+		
+		
 		Hero theHero;
 		theHero = chooseHero();
+		Dungeon dungeon = new Dungeon();
+		System.out.println("New game or load?");
+		System.out.println("1: New game\n2. Load game");
+		int choice = kb.nextInt();
+		if(choice == 2) {
+			DungeonAdventure.loadGame(dungeon);
+		}
+		else {
+		}
+			dungeon.setUpDungeon(theHero);
+		
 	    System.out.println("the mighty " + theHero.name + " enters the dungeon" );
-	    Dungeon theDungeon = new Dungeon();
-	    theDungeon.setUpDungeon(theHero);
-	    System.out.println(theHero.getPosition());
 	}
 /*-------------------------------------------------------------------
 chooseHero allows the user to select a hero, creates that hero, and
@@ -179,21 +189,7 @@ user has the option of quitting.
 
 	}//end battle method
 
-		Hero theHero;
-		theHero = chooseHero();
-		Dungeon dungeon = new Dungeon();
-		System.out.println("New game or load?");
-		System.out.println("1: New game\n2. Load game");
-		int choice = kb.nextInt();
-		if(choice == 2) {
-			DungeonAdventure.loadGame(dungeon);
-		}
-		else {
-		}
-			dungeon.createDungeon();
 		
-	    System.out.println("the mighty " + theHero.name + " enters the dungeon" );
-	}
 	private static void saveGame()
 	{
 		//to be added by memento
