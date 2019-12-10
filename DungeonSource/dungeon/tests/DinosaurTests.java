@@ -33,7 +33,7 @@ class DinosaurTests {
 	@Test
 	void dinosaurConstructorNullNameThrowsException() {
 		
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {Hero dinoTest = new Dinosaur(null);});
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {new Dinosaur(null);});
 	}
 
 }
