@@ -48,6 +48,8 @@ public class Dungeon implements Serializable {
 	public void setUpDungeon(Hero hero)
 	{
 		
+		hero.setPosition(this.heroLocation);
+		
 		Room entrance = new Room(this.heroLocation.getX(),this.heroLocation.getY());
 		entrance.setEntrance();
 		hero.setPosition(this.heroLocation, this);
