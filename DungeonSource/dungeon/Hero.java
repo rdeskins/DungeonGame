@@ -225,4 +225,19 @@ This method is called by: external sources
 		return null;
 		
 	}
+	
+	@Override
+	public String toString() {
+		return "Name: " + getName()
+				+ "\nHit Points: " + getHitPoints()
+				+ "\nTotal Healing Potions: " + getHealPotionsFound()
+				+ "\nTotal Vision Potions: " + getVisionPotionsFound()
+				+ "\nTotal Pillars of OO Found: " + getPillarsFound();
+	}
+
+	public void setPosition(Room room, Dungeon dungeon) {
+	
+		this.position = room;
+		dungeon.updateHeroLocation(room);
+	}
 }//end Hero class
