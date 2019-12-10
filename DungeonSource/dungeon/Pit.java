@@ -2,7 +2,7 @@ package dungeon;
 
 public class Pit extends Item{
 	private int subtractHP;
-	public Pit(Room position, String type) {
+	public Pit(Room position) {
 		super(position,"Pit");
 	}
 	

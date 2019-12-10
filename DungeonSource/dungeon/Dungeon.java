@@ -126,7 +126,7 @@ public class Dungeon implements Serializable {
 			j =0;
 			while(j < 5)
 			{
-				dungeon += dungeonRooms[i][j].StringTop();
+				dungeon += dungeonRooms[i][j].stringTop();
 				j++;
 			}
 			dungeon += "\n";
