@@ -72,14 +72,76 @@ public class DungeonAdventure
 		System.out.println("New game or load?");
 		System.out.println("1: New game\n2. Load game");
 		int choice = kb.nextInt();
-		if(choice == 2) {
+	    
+	    if(choice == 2) {
 			DungeonAdventure.loadGame(dungeon);
 		}
 		else {
-		}
+			dungeon.createDungeon();
 			dungeon.setUpDungeon(theHero);
+		}
 		
-	    System.out.println("the mighty " + theHero.name + " enters the dungeon" );
+	    System.out.println("the mighty " + theHero.name + " enters the dungeon " );
+	    
+	    System.out.println(dungeon.toString());
+	    
+	    boolean win = false;
+	    while(theHero.isAlive() && !win)
+	    {
+	    	System.out.println(theHero.getPosition());
+	    	if(theHero.getPosition().isEmpty())
+	    	{
+	    		System.out.print("theres nothing in this room ");
+	    	}
+	    	else
+	    	{
+	    		if(theHero.getPosition().getNumItems() > 0)
+	    		{
+	    			if(theHero.getPosition().getNumItems() > 1)
+	    			{
+	    				int numItems = theHero.getPosition().getNumItems();
+	    				while(numItems > 0)
+	    				{
+	    					Item item = theHero.getPosition().getItem(numItems);
+	    					getItem(item,theHero);
+	    				}
+	    			
+	    			}	
+	    			else
+	    			{
+	    				Item item = theHero.getPosition().getItem();
+	    				getItem(item,theHero);
+	    			}
+	    			theHero.getPosition().emptyRoom();
+	    		}
+	    		else if(theHero.getPosition().getMonster() != null)
+	    		{
+	    			System.out.println("a monster jumps out at " + theHero.getName());
+	    			battle(theHero,theHero.getPosition().getMonster()); 
+	    			theHero.getPosition().emptyRoom();
+	    		}
+	    		else if (theHero.getPosition().isEntrance())
+	    		{
+	    			System.out.println("it's the entrance ");
+	    		}
+	    		else if(theHero.getPosition().isExit())
+	    		{
+	    			if(theHero.pillarsFound == 4)
+	    			{
+	    				System.out.println("congrats! you won! ");
+	    				win = true;
+	    			}
+	    			else
+	    			{
+	    				System.out.println("its the exit, you have " + theHero.getPillarsFound() + " pillars, come back when you have found all 4");
+	    			}
+	    			
+	    		}
+	    	
+	    	}
+	    	kb.nextLine(); //flush buffer
+	    	movement(theHero,dungeon);
+	    }
 	}
 /*-------------------------------------------------------------------
 chooseHero allows the user to select a hero, creates that hero, and
@@ -189,76 +251,6 @@ user has the option of quitting.
 
 	}//end battle method
 
-		if(choice == 2) {
-			DungeonAdventure.loadGame(dungeon);
-		}
-		else {
-			dungeon.createDungeon();
-			dungeon.setUpDungeon(theHero);
-		}
-		
-	    System.out.println("the mighty " + theHero.name + " enters the dungeon " );
-	    
-	    System.out.println(dungeon.toString());
-	    
-	    boolean win = false;
-	    while(theHero.isAlive() && !win)
-	    {
-	    	System.out.println(theHero.getPosition());
-	    	if(theHero.getPosition().isEmpty())
-	    	{
-	    		System.out.print("theres nothing in this room ");
-	    	}
-	    	else
-	    	{
-	    		if(theHero.getPosition().getNumItems() > 0)
-	    		{
-	    			if(theHero.getPosition().getNumItems() > 1)
-	    			{
-	    				int numItems = theHero.getPosition().getNumItems();
-	    				while(numItems > 0)
-	    				{
-	    					Item item = theHero.getPosition().getItem(numItems);
-	    					getItem(item,theHero);
-	    				}
-	    			
-	    			}	
-	    			else
-	    			{
-	    				Item item = theHero.getPosition().getItem();
-	    				getItem(item,theHero);
-	    			}
-	    			theHero.getPosition().emptyRoom();
-	    		}
-	    		else if(theHero.getPosition().getMonster() != null)
-	    		{
-	    			System.out.println("a monster jumps out at " + theHero.getName());
-	    			battle(theHero,theHero.getPosition().getMonster()); 
-	    			theHero.getPosition().emptyRoom();
-	    		}
-	    		else if (theHero.getPosition().isEntrance())
-	    		{
-	    			System.out.println("it's the entrance ");
-	    		}
-	    		else if(theHero.getPosition().isExit())
-	    		{
-	    			if(theHero.pillarsFound == 4)
-	    			{
-	    				System.out.println("congrats! you won! ");
-	    				win = true;
-	    			}
-	    			else
-	    			{
-	    				System.out.println("its the exit, you have " + theHero.getPillarsFound() + " pillars, come back when you have found all 4");
-	    			}
-	    			
-	    		}
-	    	
-	    	}
-	    	kb.nextLine(); //flush buffer
-	    	movement(theHero,dungeon);
-	    }
-	}
 	private static void getItem(Item item, Hero theHero) {
 		// TODO Auto-generated method stub
 		
