@@ -1,4 +1,10 @@
 package dungeon;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 /**
@@ -48,6 +54,7 @@ public abstract class Hero extends DungeonCharacter
 					 double chanceToBlock, String displayName)
   {
 	super(displayName, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax);
+	
 	this.chanceToBlock = chanceToBlock;
   }
   
@@ -178,8 +185,46 @@ This method is called by: external sources
 
 		} while(numOfAttacks > 0 && opponent.isAlive());
 
-
 	}//end battleChoices
+	
+	public Memento saveHero() {
+		Memento fileMemento = new FileMemento("HeroState.txt");
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		ObjectOutput out = null;
+		try {
+			out = new ObjectOutputStream(bos);   
+			  out.writeObject(this);
+			  out.flush();
+			  byte[] heroBytes = bos.toByteArray();
+			fileMemento.setState(heroBytes);
+		}
+		catch(IOException ex) {
+			System.out.println("IO Exception Hero saveHero: " + ex.getMessage());
+		}
+		return fileMemento;
+	}
+	
+	public Hero loadHero(Memento memento) {
+		
+		byte[] heroStateArray = memento.getSavedState();
+		
+		ByteArrayInputStream bis = new ByteArrayInputStream(heroStateArray);
+		
+		try {
+			ObjectInputStream ois = new ObjectInputStream(bis);
+			Hero heroObject = (Hero)ois.readObject();
+			
+			return heroObject;
+			
+		} catch (IOException e) {
+			System.out.println("Hero loadHero IOException: " + e.getMessage());
+		} catch (ClassNotFoundException e) {
+			System.out.println("Hero loadHero ClassNotFoundException: " + e.getMessage());
+		}
+		
+		return null;
+		
+	}
 	
 	@Override
 	public String toString() {

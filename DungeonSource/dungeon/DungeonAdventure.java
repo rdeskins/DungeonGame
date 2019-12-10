@@ -57,7 +57,6 @@ public class DungeonAdventure
 		do
 		{
 		    play();
-
 		} while (playAgain());
 
     }//end main method
@@ -74,7 +73,7 @@ public class DungeonAdventure
 		int choice = kb.nextInt();
 	    
 	    if(choice == 2) {
-			DungeonAdventure.loadGame(dungeon);
+			DungeonAdventure.loadGame(dungeon, theHero);
 		}
 		else {
 			dungeon.createDungeon();
@@ -305,17 +304,21 @@ user has the option of quitting.
 				
 			}
 		}
-		theHero.setPosition(dungeon.getRoom(x, y),dungeon);
+		theHero.setPosition(dungeon.getRoom(x, y));
 	}
 
-	private static void saveGame()
+	private static void saveGame(Dungeon dungeon, Hero hero)
 	{
-		//to be added by memento
+		Memento dungeonFileMemento = dungeon.saveDungeon();
+		Memento heroFileMemento = hero.saveHero();
 	}
-	private static void loadGame(Dungeon dungeon)
+	private static void loadGame(Dungeon dungeon, Hero hero)
 	{
-		Memento fileMemento = new FileMemento("DungeonState.txt");
-		dungeon.loadDungeon(fileMemento);
+		Memento dungeonFileMemento = new FileMemento("DungeonState.txt");
+		Memento heroFileMemento = new FileMemento("HeroState.txt");
+		
+		dungeon.loadDungeon(dungeonFileMemento);
+		hero.loadHero(heroFileMemento);
 	}
 	
 }//end Dungeon class
