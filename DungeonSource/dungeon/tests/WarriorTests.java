@@ -2,23 +2,40 @@ package dungeon.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import dungeon.AttackBehavior;
+import dungeon.AttackFactory;
+import dungeon.DungeonCharacter;
 import dungeon.Hero;
+import dungeon.Ogre;
 import dungeon.Warrior;
 
 class WarriorTests {
 
 	@Test
-	void testAttack() {
-		Hero warTest = new Warrior("test");
+	void warriorAttackDamagesOpponent() {
+		Hero warTest = new Warrior("testy boi");
+	
+		DungeonCharacter testOgre = new Ogre();
 		
+		int hitPoints = testOgre.getHitPoints();
 		
+		warTest.attack(testOgre);
+		
+		assertNotEquals(hitPoints, warTest.getHitPoints());
 	}
-
+	
 	@Test
-	void testWarrior() {
-		fail("Not yet implemented");
+	void warriorConstructorReturnsWarrior() {
+		assertTrue(new Warrior("Testy boi") instanceof Warrior);
+	}
+	
+	@Test
+	void warriorConstructorNullNameThrowsException() {
+		
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {Hero warTest = new Warrior(null);});
 	}
 
 }

@@ -32,6 +32,7 @@ public class Warrior extends Hero
 		//This sets the attackBehaviors array in the parent DungeonCharacter class
 		this.setAttackBehaviors(warriorAttacks);
 		
+		this.attackBehavior = this.attackBehaviors[0];
     }//end constructor
 
 	public void attack(DungeonCharacter opponent)
