@@ -131,21 +131,21 @@ public class Dungeon implements Serializable {
 			j =0;
 			while(j < 5)
 			{
-				dungeon += dungeonRooms[i][j].stringTop();
+				dungeon += dungeonRooms[j][i].stringTop();
 				j++;
 			}
 			dungeon += "\n";
 			j =0;
 			while(j < 5)
 			{
-				dungeon += dungeonRooms[i][j].stringMid();
+				dungeon += dungeonRooms[j][i].stringMid();
 				j++;
 			}
 			dungeon += "\n";
 			j =0;
 			while(j < 5)
 			{
-				dungeon += dungeonRooms[i][j].stringBottom();
+				dungeon += dungeonRooms[j][i].stringBottom();
 				j++;
 			}
 			dungeon += "\n";

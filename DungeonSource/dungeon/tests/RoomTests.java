@@ -39,67 +39,67 @@ class RoomTests {
 		*/
 		assertEquals("* * *\n"
 				   + "* E |\n"
-				   + "* - *", roomUpperLeft);
+				   + "* - *", roomUpperLeft.toString());
 		
 		assertEquals("* - *\n"
 				   + "| E *\n"
-				   + "* * *", roomBottomRight);
+				   + "* * *", roomBottomRight.toString());
 		
 		assertEquals("* - *\n"
 				   + "* E |\n"
-				   + "* - *", roomLeftSide);
+				   + "* - *", roomLeftSide.toString());
 		
 		assertEquals("* - *\n"
 				   + "| E *\n"
-				   + "* - *", roomRightSide);
+				   + "* - *", roomRightSide.toString());
 
 		assertEquals("* - *\n"
 				   + "| E |\n"
-				   + "* - *", roomCenter);
+				   + "* - *", roomCenter.toString());
 		
 		//Test different items, all use a center room
 		roomCenter.addItem(new Pit(roomCenter));
 		assertEquals("* - *\n"
 				   + "| P |\n"
-				   + "* - *", roomCenter);
+				   + "* - *", roomCenter.toString());
 		roomCenter.emptyRoom();
 		
 		roomCenter.addItem(new Potion(roomCenter));
 		assertEquals("* - *\n"
 				   + "| H |\n"
-				   + "* - *", roomCenter);
+				   + "* - *", roomCenter.toString());
 		roomCenter.emptyRoom();
 		
 		roomCenter.addItem(new Pillar(roomCenter));
 		assertEquals("* - *\n"
 				   + "| L |\n"
-				   + "* - *", roomCenter);
+				   + "* - *", roomCenter.toString());
 		roomCenter.emptyRoom();
 		
 		roomCenter.addItem(new Potion(roomCenter));
 		roomCenter.addItem(new Pit(roomCenter));
 		assertEquals("* - *\n"
 				   + "| M |\n"
-				   + "* - *", roomCenter);
+				   + "* - *", roomCenter.toString());
 		roomCenter.emptyRoom();
 		
 		//Test Monsters
 		roomCenter.addMonster();
 		assertEquals("* - *\n"
 				   + "| X |\n"
-				   + "* - *", roomCenter);
+				   + "* - *", roomCenter.toString());
 		roomCenter.emptyRoom();
 		
 		//Test Entrance and Exits
 		roomCenter.setEntrance();
 		assertEquals("* - *\n"
 				   + "| I |\n"
-				   + "* - *", roomCenter);
+				   + "* - *", roomCenter.toString());
 		
 		roomUpperLeft.setExit();
 		assertEquals("* * *\n"
 				   + "* O |\n"
-				   + "* - *", roomUpperLeft);
+				   + "* - *", roomUpperLeft.toString());
 		
 	}
 	
@@ -194,26 +194,5 @@ class RoomTests {
 		assertTrue(roomCenter.getNumItems() == 0);
 		assertTrue(roomCenter.getMonster() == null);
 	}
-	
-	@Test
-	void testEquals() {
-		Room[][] rooms2 = new Room[5][5];
-		for (int i=0; i<5; i++) {
-			for (int j=0; j<5; j++) {
-				rooms[i][j] = new Room(i,j);
-			}
-		}
-		Room roomCenter2 = rooms2[2][2];
-		
-		assertTrue(roomCenter.equals(roomCenter2));
-		
-		roomCenter2.addItem(new Potion(roomCenter2));
-		roomCenter.addItem(new Potion(roomCenter));
-		assertTrue(roomCenter.equals(roomCenter2));
-		
-		roomCenter2.addMonster();
-		assertFalse(roomCenter.equals(roomCenter2));
-		
-		assertFalse(roomCenter.equals(roomUpperLeft));
-	}
+
 }
