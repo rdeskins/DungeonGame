@@ -189,9 +189,6 @@ user has the option of quitting.
 
 	}//end battle method
 
-		
-<<<<<<< refs/remotes/rdeskins/master
-=======
 		if(choice == 2) {
 			DungeonAdventure.loadGame(dungeon);
 		}
@@ -319,7 +316,6 @@ user has the option of quitting.
 		theHero.setPosition(dungeon.getRoom(x, y),dungeon);
 	}
 
->>>>>>> fixed toString
 	private static void saveGame()
 	{
 		//to be added by memento
