@@ -24,8 +24,8 @@ class RoomTests {
 		
 		roomUpperLeft = rooms[0][0];
 		roomBottomRight = rooms[4][4];
-		roomLeftSide = rooms[1][0];
-		roomRightSide = rooms[1][4];
+		roomLeftSide = rooms[0][1];
+		roomRightSide = rooms[4][2];
 		roomCenter = rooms[2][2];
 	}
 	

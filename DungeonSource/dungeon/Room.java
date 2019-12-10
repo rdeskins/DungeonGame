@@ -34,7 +34,7 @@ public class Room implements Serializable {
 		{
 			if(this.y == 4)
 			{
-				room = "* - *\n*   |\n* * * ";
+				room = "* - *\n*   |\n* * *";
 			}
 			else if(this.y == 0)
 			{
