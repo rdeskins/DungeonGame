@@ -189,4 +189,10 @@ This method is called by: external sources
 				+ "\nTotal Vision Potions: " + getVisionPotionsFound()
 				+ "\nTotal Pillars of OO Found: " + getPillarsFound();
 	}
+
+	public void setPosition(Room room, Dungeon dungeon) {
+	
+		this.position = room;
+		dungeon.updateHeroLocation(room);
+	}
 }//end Hero class

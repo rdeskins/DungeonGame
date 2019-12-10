@@ -21,9 +21,22 @@ public class Dungeon implements Serializable {
 	private Room heroLocation;
 	
 	
+<<<<<<< refs/remotes/rdeskins/master
 	public Dungeon()
 	{
 
+=======
+	public Room[][] getDungeonRooms() {
+		return this.dungeonRooms;
+	}
+	
+	public Room getHeroLocation() {
+		return this.heroLocation;
+	}
+	
+	public void createDungeon()
+	{
+>>>>>>> fixed toString
 		this.dungeonRooms = new Room[5][5];
 		for(int i = 0; i < 5; i++)
 		{
@@ -40,11 +53,24 @@ public class Dungeon implements Serializable {
 	}
 	public void setUpDungeon(Hero hero)
 	{
+<<<<<<< refs/remotes/rdeskins/master
 		heroLocation.setEntrance();
 		hero.setPosition(this.heroLocation);
 		int x,y,i = 0;
 		Random RAND = new Random(); 
+=======
+		
+		this.heroLocation = new Room(0,0);
+		dungeonRooms[0][0] = heroLocation;
+		Room entrance = new Room(this.heroLocation.getX(),this.heroLocation.getY());
+		entrance.setEntrance();
+		hero.setPosition(this.heroLocation, this);
+>>>>>>> fixed toString
 		Room newRoom;
+		Random RAND = new Random(); 
+		int x = RAND.nextInt(4);
+		int y = RAND.nextInt(4);
+		int i = 0;
 		boolean success = false;
 		while(!success)
 		{
@@ -216,5 +242,13 @@ public class Dungeon implements Serializable {
 			System.out.println(e.getMessage());
 		}
 		
+	}
+
+	public Room getRoom(int x, int y) {
+		return dungeonRooms[y][x];
+	}
+
+	public void updateHeroLocation(Room room) {
+		this.heroLocation = room;
 	}
 }

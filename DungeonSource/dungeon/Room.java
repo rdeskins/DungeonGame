@@ -185,5 +185,14 @@ public class Room implements Serializable {
 	public void setEntrance() {
 		this.isEntrance = true;
 	}
+
+	public boolean isExit() {
+		return isExit;
+	}
+
+	public boolean isEntrance() {
+		// TODO Auto-generated method stub
+		return isEntrance;
+	}
 	
 }
