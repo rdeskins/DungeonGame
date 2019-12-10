@@ -17,8 +17,11 @@ public class Warrior extends Hero
 
     public Warrior(String name)
 	{
-
+    	
 		super("Warrior", 125, 4, .8, 35, 60, .2,name );
+		
+    	if(name == null)
+    		throw new IllegalArgumentException("Warrior Constructor name string null");
 		
 		//This is an array containing all possible attacks for a warrior
 		AttackFactory attacks = AttackFactory.getAttackFactory();
@@ -29,6 +32,7 @@ public class Warrior extends Hero
 		//This sets the attackBehaviors array in the parent DungeonCharacter class
 		this.setAttackBehaviors(warriorAttacks);
 		
+		this.attackBehavior = this.attackBehaviors[0];
     }//end constructor
 
 	public void attack(DungeonCharacter opponent)

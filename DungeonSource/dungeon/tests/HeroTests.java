@@ -1,6 +1,8 @@
 package dungeon.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import dungeon.*;
 import org.junit.jupiter.api.Test;
@@ -40,4 +42,19 @@ class HeroTests {
 	
 	//No Test for battlechoices as of now, unsure how to test for it
 
+	
+	@Test
+	void heroSaveHeroSavesState() {
+		Hero expectedHero = new Warrior("Doug");
+		
+		Memento fileMemento = expectedHero.saveHero();
+		
+		Hero loadHero = new MockHero("Test");
+		
+		Hero loadedHero = loadHero.loadHero(fileMemento);
+		
+		assertEquals(expectedHero.getName(), loadedHero.getName());
+		
+		assertTrue(loadedHero instanceof Warrior);
+	}
 }

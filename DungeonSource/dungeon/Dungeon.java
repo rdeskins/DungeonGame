@@ -52,7 +52,7 @@ public class Dungeon implements Serializable {
 		
 		Room entrance = new Room(this.heroLocation.getX(),this.heroLocation.getY());
 		entrance.setEntrance();
-		hero.setPosition(this.heroLocation, this);
+		hero.setPosition(this.heroLocation);
 		Room newRoom;
 		Random RAND = new Random(); 
 		int x = RAND.nextInt(4);
