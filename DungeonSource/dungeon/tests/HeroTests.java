@@ -29,6 +29,15 @@ class HeroTests {
 		assertEquals(990,testNoBlock.getHitPoints());
 	}
 	
+	@Test
+	void testToString() { //Could use more tests
+		assertEquals("Name: name\n"
+				+ "Hit Points: 1000\n"
+				+ "Total Healing Potions: 0\n"
+				+ "Total Vision Potions: 0\n"
+				+ "Total Pillars of OO Found: 0",testNoBlock.toString());
+	}
+	
 	//No Test for battlechoices as of now, unsure how to test for it
 
 }

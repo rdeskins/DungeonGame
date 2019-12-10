@@ -34,15 +34,15 @@ public class Room implements Serializable {
 		{
 			if(this.y == 4)
 			{
-				
+				room = "* - *\n*   |\n* * *";
 			}
 			else if(this.y == 0)
 			{
-				room = "* * * \n" + this.stringMid() +"\n* -   ";
+				room = "* * *\n*   |\n* - *";
 			}
 			else
 			{
-				room = "* -   \n"  + this.stringMid() +   "\n* -   ";
+				room = "* - *\n*   |\n* - *";
 			}
 			
 		}
@@ -51,221 +51,66 @@ public class Room implements Serializable {
 		{
 			if(this.x == 4)
 			{
-				room = "* * * \n" + this.stringMid() + "\n  - * "; 
+				room = "* * *\n|   *\n* - *"; 
 			}
 			else
 			{
-				room = "* * * \n" + this.stringMid() + "\n  -   ";
+				room = "* * *\n|   |\n* - *";
 			}
 		}
 		else if(this.y == 4)
 		{
 			if(this.x == 4)
 			{
-				 room = "  - * \n"  + this.stringMid() + "*\n* * * ";
+				 room = "* - *\n|   *\n* * *";
 			}
 			else
 			{
-				 room = "  -   \n"  + this.stringMid() + "\n* * * ";
+				 room = "* - *\n|   |\n* * *";
 			}
 		}
 		else if(this.x == 4)
 		{
-			room = "  - * \n" + this.stringMid() + "*\n  - * ";
+			room = "* - *\n|   *\n* - *";
 		}
+		
 		else
 		{
-			room = "  -   \n" + this.stringMid() + "\n  -   ";
+			room = "* - *\n|   |\n* - *";
 		}
 		
 		
 		return room;
 	}
 	
-	public String StringTop()
+	public String stringTop()
 	{
-		String room = "" ;
-		
-		if(x ==  0)
-		{
-		    if(y == 0)
-			{
-				room = "* * *";
-			}
-			else
-			{
-				room = "* -";
-			}
-			
-		}
-		
-		else if(y == 0)
-		{
-			room = " * *";
-		}
-		else if(x == 4)
-		{
-			room = "   - *";
-		}
-		else
-		{
-			room = "   -";
-		}
-		
-		
-		return room;
+		String room = this.toString();
+		return room.substring(0,5);
 		
 	}
 	
 	public String stringMid()
 	{
-        String room = "";
-		
-		if(x ==  0)
-		{
-			room = "*   |";
-			
-		}
-		
-	
-		else if(x == 4)
-		{
-			room = "   *";
-		}
-		else
-		{
-			room = "   |";
-		}
-		
-		if(this.isEntrance)
-		{
-			if(x == 0)
-			{
-				room = room.substring(0, 1) + " I" + room.substring(3,room.length());
-			}
-			else
-			{
-				room = room.substring(0, 1) + "I " + room.substring(3,room.length());
-			}
-		}
-		
-		else if(this.isExit)
-		{
-			if(x == 0)
-			{
-				room = room.substring(0, 1) + " O" + room.substring(3,room.length());
-			}
-			else
-			{
-				room = room.substring(0, 1) + "O " + room.substring(3,room.length());
-			}
-		}
-		
-		else if(this.monster != null)
-		{
-			if(x == 0)
-			{
-				room = room.substring(0, 1) + " X" + room.substring(3,room.length());
-			}
-			else
-			{
-				room = room.substring(0, 1) + "X " + room.substring(3,room.length());
-			}
-		}
-		
-		else if(this.isEmpty())
-		{
-			if(x == 0)
-			{
-				room = room.substring(0, 1) + " E" + room.substring(3,room.length());
-			}
-			else
-			{
-				room = room.substring(0, 1) + "E " + room.substring(3,room.length());
-			}
-		}
-		
-		else if(this.getnumItems() != 0 && this.getItem().type.equals("potion"))
-		{
-				if(x == 0)
-				{
-					room = room.substring(0, 1) + " P" + room.substring(3,room.length());
-				}
-				else
-				{
-					room = room.substring(0, 1) + "P " + room.substring(3,room.length());
-				}
-		}
-		
-		else if(this.getnumItems() != 0 && this.getItem().type.equals("pit"))
-		{
-				if(x == 0)
-				{
-					room = room.substring(0, 1) + " P" + room.substring(3,room.length());
-				}
-				else
-				{
-					room = room.substring(0, 1) + "P " + room.substring(3,room.length());
-				}
-		}
-		
-		else if(this.getnumItems() != 0 && this.getItem().type.equals("pillar"))
-		{
-				if(x == 0)
-				{
-					room = room.substring(0, 1) + " l" + room.substring(3,room.length());
-				}
-				else
-				{
-					room = room.substring(0, 1) + "l " + room.substring(3,room.length());
-				}
-		}
-		
-		
-		return room;
+		String room = this.toString();
+		return room.substring(6,11);
 	}
 	
 	public String stringBottom()
 	{
-		String room = "";
-		if(y == 4)
-		{
-			if(x == 0)
-			{
-				room = "* * *";
-			}
-			else
-			{
-				room = " * *";
-			}
-		}
-		
-		else if(x ==  0)
-		{
-				room = "* -  ";
-			
-		}
-		
-	
-		else if(x == 4)
-		{
-			room = " - *";
-		}
-		else
-		{
-			room = " -  ";
-		}
-		
-		
-		return room;
+		String room = this.toString();
+		return room.substring(12);
 	}
+	
 	public Item getItem() {
 		return items.get(0);
 	}
+	
 	public Item getItem(int x)
 	{
 		return items.get(x);
 	}
+	
 	public boolean addItem(Item I)
 	{
 		Iterator <Item> itemIterator = items.iterator();
@@ -279,23 +124,29 @@ public class Room implements Serializable {
 		items.add(I);
 		return true;
 	}
+	
 	public int getX() {
 		return x;
 	}
+	
 	public int getY() {
 		return y;
 	}
+	
 	public Monster getMonster() {
 		return monster;
 	}
+	
 	public void addMonster() {
 
 		this.monster = MonsterFactory.createMonster();
 	}
-	public int getnumItems()
+	
+	public int getNumItems()
 	{
 		return this.items.size();
 	}
+	
 	public void emptyRoom()
 	{
 		this.items.clear();
@@ -311,6 +162,8 @@ public class Room implements Serializable {
 			
 		return false;
 	}
+	
+	@Override
 	public boolean equals(Object o)
 	{
 		if(o instanceof Room)
@@ -324,11 +177,22 @@ public class Room implements Serializable {
 		return false; 
 
 	}
+	
 	public void setExit() {
 		this.isExit = true;
 	}
+	
 	public void setEntrance() {
 		this.isEntrance = true;
+	}
+
+	public boolean isExit() {
+		return isExit;
+	}
+
+	public boolean isEntrance() {
+		// TODO Auto-generated method stub
+		return isEntrance;
 	}
 	
 }
