@@ -21,11 +21,6 @@ public class Dungeon implements Serializable {
 	private Room heroLocation;
 	
 	
-	public Dungeon()
-	{
-		
-	}
-	
 	public Room[][] getDungeonRooms() {
 		return this.dungeonRooms;
 	}
@@ -48,12 +43,17 @@ public class Dungeon implements Serializable {
 	}
 	public void setUpDungeon(Hero hero)
 	{
-		this.heroLocation = this.dungeonRooms[0][0];
-		Room entrance = new Room(this.heroLocation.getX(),this.heroLocation.getY());
 		
-		int x,y,i = 0;
-		Random RAND = new Random(); 
+		this.heroLocation = new Room(0,0);
+		dungeonRooms[0][0] = heroLocation;
+		Room entrance = new Room(this.heroLocation.getX(),this.heroLocation.getY());
+		entrance.setEntrance();
+		hero.setPosition(this.heroLocation, this);
 		Room newRoom;
+		Random RAND = new Random(); 
+		int x = RAND.nextInt(4);
+		int y = RAND.nextInt(4);
+		int i = 0;
 		boolean success = false;
 		while(!success)
 		{
@@ -224,5 +224,13 @@ public class Dungeon implements Serializable {
 			System.out.println(e.getMessage());
 		}
 		
+	}
+
+	public Room getRoom(int x, int y) {
+		return dungeonRooms[y][x];
+	}
+
+	public void updateHeroLocation(Room room) {
+		this.heroLocation = room;
 	}
 }
