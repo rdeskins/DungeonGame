@@ -73,7 +73,7 @@ public class DungeonAdventure
 		int choice = kb.nextInt();
 	    
 	    if(choice == 2) {
-			DungeonAdventure.loadGame(dungeon);
+			DungeonAdventure.loadGame(dungeon, theHero);
 		}
 		else {
 			dungeon.createDungeon();
@@ -304,10 +304,10 @@ user has the option of quitting.
 				
 			}
 		}
-		theHero.setPosition(dungeon.getRoom(x, y),dungeon);
+		theHero.setPosition(dungeon.getRoom(x, y));
 	}
 
-	private static void saveGame()
+	private static void saveGame(Dungeon dungeon, Hero hero)
 	{
 		Memento dungeonFileMemento = dungeon.saveDungeon();
 		Memento heroFileMemento = hero.saveHero();
