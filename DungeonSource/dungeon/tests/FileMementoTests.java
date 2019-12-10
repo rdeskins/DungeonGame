@@ -6,6 +6,8 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import dungeon.FileMemento;
@@ -13,26 +15,33 @@ import dungeon.Memento;
 
 class FileMementoTests {
 
+	Memento fileMemento;
+	File openFile;
+	
+	 @BeforeEach
+	 void init() {
+			fileMemento = new FileMemento("testfile.txt");
+			openFile = new File("testfile.txt");
+	 }
+	 
+	 @AfterEach
+	 void cleanUp() {
+		 openFile.delete();
+	 }
+	
 	@Test
 	void testGetSavedState() {
-		Memento fileMemento = new FileMemento("testfile.txt");
 		byte[] expectedByteArray = "testing".getBytes();
 		
 		fileMemento.setState(expectedByteArray);
 		
 		byte[] testByteArray = fileMemento.getSavedState();
 		
-		File file = new File("testfile.txt");
-		
-		file.delete();
-		
 		assertArrayEquals(expectedByteArray, testByteArray);
 	}
 
 	@Test
 	void testSetStateStoresStateInFile() {
-		File openFile = new File("testfile.txt");
-		Memento fileMemento = new FileMemento("testfile.txt");
 		byte[] testByteArray = "testing".getBytes();
 		
 		fileMemento.setState(testByteArray);
@@ -48,24 +57,16 @@ class FileMementoTests {
 		catch(IOException ex) {
 			fail();
 		}
-		
-		openFile.delete();
 	}
 	
 	@Test
 	void testSetStateCreatesFile() {
-		Memento fileMemento = new FileMemento("testfile.txt");
 		byte[] expectedByteArray = "testing".getBytes();
 		
 		fileMemento.setState(expectedByteArray);
-	
-		
-		File file = new File("testfile.txt");
 		
 			
-		assertTrue(file.exists());
-		
-		file.delete();
+		assertTrue(openFile.exists());
 		
 	}
 
