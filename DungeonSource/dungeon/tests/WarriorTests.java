@@ -24,7 +24,7 @@ class WarriorTests {
 		
 		warTest.attack(testOgre);
 		
-		assertNotEquals(hitPoints, warTest.getHitPoints());
+		assertNotEquals(hitPoints, testOgre.getHitPoints());
 	}
 	
 	@Test
