@@ -3,7 +3,6 @@ package dungeon;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Random;
 
 
 public class Room implements Serializable {
@@ -16,7 +15,7 @@ public class Room implements Serializable {
 	private boolean isEntrance;
 	private boolean isExit;
 	private Monster monster = null;
-	private ArrayList<Item> items = new ArrayList<Item>();
+	private ArrayList<Item> items;
 	
 	
 	public Room(int x, int y)
@@ -79,8 +78,29 @@ public class Room implements Serializable {
 			room = "* - *\n|   |\n* - *";
 		}
 		
+		//Add Character in center now
+		String s;
+		if (this.getNumItems() > 1)
+			s = "M";
+		else if (this.getItem() instanceof Potion)
+			s = "H";
+		else if (this.getItem() instanceof Pit)
+			s = "P";
+		else if (this.getItem() instanceof Pillar)
+			s = "L";
+		else if (this.isEntrance())
+			s = "I";
+		else if (this.isExit())
+			s = "O";
+		else if (this.getMonster() != null)
+			s = "X";
+		else if (this.isEmpty())
+			s = "E";
+		else
+			s = " ";
 		
-		return room;
+		
+		return (room.substring(0,8) + s + room.substring(9));
 	}
 	
 	public String stringTop()
@@ -103,7 +123,10 @@ public class Room implements Serializable {
 	}
 	
 	public Item getItem() {
-		return items.get(0);
+		if (!this.items.isEmpty())
+			return items.get(0);
+		
+		return null;
 	}
 	
 	public Item getItem(int x)
@@ -116,11 +139,12 @@ public class Room implements Serializable {
 		Iterator <Item> itemIterator = items.iterator();
 		while(itemIterator.hasNext())
 		{
-			if(itemIterator.next().type.equals(I.type) ||itemIterator.next().type.equals("pillar"))
+			String nextType = itemIterator.next().type;
+			if(nextType.equals(I.type) || nextType.equals("pillar"))
 				{
 					return false;
 				}
-		};
+		}
 		items.add(I);
 		return true;
 	}
@@ -161,21 +185,6 @@ public class Room implements Serializable {
 		}
 			
 		return false;
-	}
-	
-	@Override
-	public boolean equals(Object o)
-	{
-		if(o instanceof Room)
-		{
-			Room PI = (Room)o;
-			if(PI.getX() == this.x && PI.getY() == this.y)
-			{
-				return true;
-			}
-		}
-		return false; 
-
 	}
 	
 	public void setExit() {

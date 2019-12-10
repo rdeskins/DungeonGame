@@ -2,7 +2,6 @@ package dungeon.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import dungeon.*;
 import org.junit.jupiter.api.Test;
