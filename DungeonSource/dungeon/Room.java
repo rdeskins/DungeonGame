@@ -16,7 +16,7 @@ public class Room implements Serializable {
 	private boolean isEntrance;
 	private boolean isExit;
 	private Monster monster = null;
-	private ArrayList<Item> items;
+	private ArrayList<Item> items = new ArrayList<Item>();
 	
 	
 	public Room(int x, int y)
@@ -116,7 +116,7 @@ public class Room implements Serializable {
 		Iterator <Item> itemIterator = items.iterator();
 		while(itemIterator.hasNext())
 		{
-			if(itemIterator.next().type.equals(I.type))
+			if(itemIterator.next().type.equals(I.type) ||itemIterator.next().type.equals("pillar"))
 				{
 					return false;
 				}
@@ -155,7 +155,7 @@ public class Room implements Serializable {
 	
 	public boolean isEmpty()
 	{
-		if(items.size() == 0 && (monster == null) && !isEntrance && !isExit)
+		if(items.size() == 0 && monster == null && !isEntrance && !isExit)
 		{
 			return true;
 		}
@@ -184,6 +184,15 @@ public class Room implements Serializable {
 	
 	public void setEntrance() {
 		this.isEntrance = true;
+	}
+
+	public boolean isExit() {
+		return isExit;
+	}
+
+	public boolean isEntrance() {
+		// TODO Auto-generated method stub
+		return isEntrance;
 	}
 	
 }
