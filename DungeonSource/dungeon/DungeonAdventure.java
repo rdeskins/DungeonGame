@@ -79,6 +79,8 @@ public class DungeonAdventure
 			dungeon.createDungeon();
 			dungeon.setUpDungeon(theHero);
 		}
+	    
+	    kb.nextLine();
 		
 	    System.out.println("the mighty " + theHero.name + " enters the dungeon " );
 	    
@@ -90,7 +92,7 @@ public class DungeonAdventure
 	    	System.out.println(theHero.getPosition());
 	    	if(theHero.getPosition().isEmpty())
 	    	{
-	    		System.out.print("theres nothing in this room ");
+	    		System.out.println("theres nothing in this room ");
 	    	}
 	    	else
 	    	{
@@ -104,7 +106,6 @@ public class DungeonAdventure
 	    					Item item = theHero.getPosition().getItem(numItems);
 	    					getItem(item,theHero);
 	    				}
-	    			
 	    			}	
 	    			else
 	    			{
@@ -138,8 +139,8 @@ public class DungeonAdventure
 	    		}
 	    	
 	    	}
-	    	kb.nextLine(); //flush buffer
-	    	movement(theHero,dungeon);
+	    	if(!win)
+	    		movement(theHero,dungeon);
 	    }
 	}
 /*-------------------------------------------------------------------
@@ -251,18 +252,31 @@ user has the option of quitting.
 	}//end battle method
 
 	private static void getItem(Item item, Hero theHero) {
-		// TODO Auto-generated method stub
-		
+		if(item instanceof Pillar)
+		{
+			System.out.println("the hero found a pillar of OO! " + theHero.getName() + " has found " + ++theHero.pillarsFound + " pillars so far");
+		}
+		else if(item instanceof Pit)
+		{
+			System.out.println("The hero fell into a pit! " + theHero.getName() + " takes 10 damage.");
+			theHero.subtractHitPoints(10);
+		}
+		else if(item instanceof Potion)
+		{
+			System.out.println("The hero found a healing potion! " + theHero.getName() + " Hitpoints increased");
+			theHero.healPotionsFound++;
+			theHero.hitPoints += 10;
+		}
 	}
 
 	private static void movement(Hero theHero, Dungeon dungeon) {
 		int x = theHero.getPosition().getX();
 		int y = theHero.getPosition().getY();
 		boolean success = false;
-		while(!success) {
+		do {
 			x = theHero.getPosition().getX();
 			y = theHero.getPosition().getY();
-			System.out.println("enter a movement N,E,S or W"); 
+			System.out.println("enter a movement N, E, S, or W"); 
 			String movement = kb.nextLine();
 			if(movement.equals("N")|| movement.equals("n")) {	
 				if(x - 1 >= 0) {
@@ -289,11 +303,16 @@ user has the option of quitting.
 					success = true;
 				}
 			}
+			//Secret command for displaying whole dungeon
+			else if(movement.toLowerCase().equals("x"))
+			{
+				System.out.println(dungeon);
+			}
 			else
 			{
-				System.out.print("try again!");
+				System.out.println("try again!");
 			}
-		}
+		}while(!success);
 		
 		theHero.setPosition(dungeon.getRoom(x, y));
 		dungeon.updateHeroLocation(dungeon.getRoom(x, y));
