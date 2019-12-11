@@ -122,12 +122,6 @@ public class Dungeon implements Serializable {
 	{
 		String dungeon = "";
 		
-		for(int j = 0; j < this.dungeonRooms.length; j++) {
-			for(int i =  0; i < this.dungeonRooms[j].length; i++) {
-				System.out.println("this.x: " + i + "this.y: " + j);
-			}
-		}
-		
 		int i = 0;
 		int j = 0;
 		
