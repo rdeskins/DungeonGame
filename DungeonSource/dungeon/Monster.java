@@ -27,6 +27,10 @@ public abstract class Monster extends DungeonCharacter
 	this.chanceToHeal = chanceToHeal;
 	this.maxHeal = maxHeal;
 	this.minHeal = minHeal;
+	
+	this.healBehavior = new MonsterBasicHealBehavior();
+	AttackFactory attacks = AttackFactory.getAttackFactory();
+	this.attackBehavior = attacks.getAttack("Base Attack");
 
   }//end monster constructor
   
