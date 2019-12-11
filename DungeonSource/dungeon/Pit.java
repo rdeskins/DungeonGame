@@ -1,19 +1,17 @@
 package dungeon;
 
+import java.util.Random;
+
 public class Pit extends Item{
-	private int subtractHP;
+	
 	public Pit(Room position) {
 		super(position,"Pit");
 	}
 	
 	public int damage()
 	{
-		return subtractHP;
-	}
-	
-	private void calcDamage()
-	{
-		
+		Random rand = new Random();
+		return ((rand.nextInt(20))+1);
 	}
 
 }

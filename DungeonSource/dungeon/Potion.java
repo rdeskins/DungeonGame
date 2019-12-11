@@ -1,7 +1,8 @@
 package dungeon;
 
+import java.util.Random;
+
 public class Potion extends Item {
-	private int healHP;
 	public Potion(Room position) {
 		super(position, "Potion");
 		// TODO Auto-generated constructor stub
@@ -9,12 +10,7 @@ public class Potion extends Item {
 	
 	public int heal()
 	{
-		return healHP;
+		Random rand = new Random();
+		return ((rand.nextInt(10))+5);
 	}
-	
-	private void calcHeal()
-	{
-		
-	}
-
 }
