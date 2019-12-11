@@ -27,52 +27,47 @@ public class Room implements Serializable {
 	
 	public String toString()
 	{
-		String room = null;
-		
-		if(this.x ==  0)
+		String room = "";
+
+		//If the room is at the top of the array
+		if(this.x == 0)
 		{
-			if(this.y == 4)
-			{
-				room = "* - *\n*   |\n* * *";
+			if(this.y == 0) {
+				room = "* * *\n*   |\n* - *"; 
 			}
-			else if(this.y == 0)
-			{
-				room = "* * *\n*   |\n* - *";
-			}
-			else
-			{
-				room = "* - *\n*   |\n* - *";
-			}
-			
-		}
-		
-		else if(this.y == 0)
-		{
-			if(this.x == 4)
-			{
-				room = "* * *\n|   *\n* - *"; 
+			else if(this.y == 4) {
+				room = "* * *\n|   *\n* - *";
 			}
 			else
 			{
 				room = "* * *\n|   |\n* - *";
 			}
 		}
-		else if(this.y == 4)
-		{
-			if(this.x == 4)
-			{
-				 room = "* - *\n|   *\n* * *";
-			}
-			else
-			{
-				 room = "* - *\n|   |\n* * *";
-			}
-		}
+		
+		//If the room is at the bottom of the array
 		else if(this.x == 4)
 		{
-			room = "* - *\n|   *\n* - *";
+			if(this.y == 0)
+				room = "* - *\n*   |\n* * *";
+			else if(this.y == 4)
+				room = "* - *\n|   *\n* * *";
+			else
+				room = "* - *\n|   |\n* * *";
 		}
 		
+		//If the room is on the left side of the array
+		else if(this.y == 0)
+		{
+				 room = "* - *\n*   |\n* - *";
+		}
+		
+		//If the room is on the right side of the array
+		else if(this.y == 4)
+		{
+			room = "* - *\n|   *\n* - *"; 
+		}
+		
+		//Interior Room
 		else
 		{
 			room = "* - *\n|   |\n* - *";
@@ -82,12 +77,12 @@ public class Room implements Serializable {
 		String s;
 		if (this.getNumItems() > 1)
 			s = "M";
+		else if (this.getItem() instanceof Pillar)
+			s = "L";
 		else if (this.getItem() instanceof Potion)
 			s = "H";
 		else if (this.getItem() instanceof Pit)
 			s = "P";
-		else if (this.getItem() instanceof Pillar)
-			s = "L";
 		else if (this.isEntrance())
 			s = "I";
 		else if (this.isExit())
@@ -140,7 +135,7 @@ public class Room implements Serializable {
 		while(itemIterator.hasNext())
 		{
 			String nextType = itemIterator.next().type;
-			if(nextType.equals(I.type) || nextType.equals("pillar"))
+			if(nextType.equals(I.type) || itemIterator.next() instanceof Pillar)
 				{
 					return false;
 				}

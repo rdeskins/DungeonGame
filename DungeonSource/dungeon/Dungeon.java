@@ -36,7 +36,7 @@ public class Dungeon implements Serializable {
 		{
 			for(int j = 0; j < 5; j++)
 			{
-				dungeonRooms[j][i] = new Room(j,i);
+				dungeonRooms[i][j] = new Room(i,j);
 			}
 		}
 		Random RAND = new Random(); 
@@ -50,9 +50,8 @@ public class Dungeon implements Serializable {
 		
 		hero.setPosition(this.heroLocation);
 		
-		Room entrance = new Room(this.heroLocation.getX(),this.heroLocation.getY());
-		entrance.setEntrance();
-		hero.setPosition(this.heroLocation);
+		this.heroLocation.setEntrance();
+		
 		Room newRoom;
 		Random RAND = new Random(); 
 		int x = RAND.nextInt(4);
@@ -73,16 +72,16 @@ public class Dungeon implements Serializable {
 			
 		}
 		i =0;
-		//add pillars
+
+		//Add pillars
 		while(i < 4)
 		{
+			System.out.println("Adding pillars");
 			x = RAND.nextInt(5);
 			y = RAND.nextInt(5);
-			newRoom = new Room(x,y);
-			addPillars(newRoom);
 			if(dungeonRooms[x][y].isEmpty())
 			{
-				dungeonRooms[x][y] = newRoom;
+				addPillars(dungeonRooms[x][y]);
 				i++;
 			}
 			
@@ -108,11 +107,9 @@ public class Dungeon implements Serializable {
 		{
 			x = RAND.nextInt(5);
 			y = RAND.nextInt(5);
-			newRoom = new Room(x,y);
-			addItems(newRoom);
 			if(dungeonRooms[x][y].isEmpty())
 			{
-				dungeonRooms[x][y] = newRoom;
+				addItems(dungeonRooms[x][y]);
 				i++;
 			}
 		}
@@ -124,28 +121,37 @@ public class Dungeon implements Serializable {
 	public  String toString()
 	{
 		String dungeon = "";
-		int i =0;
-		int j =0;
+		
+		for(int j = 0; j < this.dungeonRooms.length; j++) {
+			for(int i =  0; i < this.dungeonRooms[j].length; i++) {
+				System.out.println("this.x: " + i + "this.y: " + j);
+			}
+		}
+		
+		int i = 0;
+		int j = 0;
+		
 		while(i < 5)
 		{
 			j =0;
 			while(j < 5)
 			{
-				dungeon += dungeonRooms[j][i].stringTop();
+				System.out.println("this.x: " + j + "this.y: " + i);
+				dungeon += dungeonRooms[i][j].stringTop();
 				j++;
 			}
 			dungeon += "\n";
 			j =0;
 			while(j < 5)
 			{
-				dungeon += dungeonRooms[j][i].stringMid();
+				dungeon += dungeonRooms[i][j].stringMid();
 				j++;
 			}
 			dungeon += "\n";
 			j =0;
 			while(j < 5)
 			{
-				dungeon += dungeonRooms[j][i].stringBottom();
+				dungeon += dungeonRooms[i][j].stringBottom();
 				j++;
 			}
 			dungeon += "\n";
@@ -161,7 +167,7 @@ public class Dungeon implements Serializable {
 	}
 	private boolean addPillars(Room r)
 	{
-		return r.addItem(new Item(r,"pillar"));
+		return r.addItem(new Pillar(r));
 	}
 	private boolean addMonsters(Room r)
 	{
@@ -174,9 +180,9 @@ public class Dungeon implements Serializable {
 	}
 	private boolean addItems(Room r)
 	{
-		if(!(r.addItem(new Item(r,"potion"))))
+		if(!(r.addItem(new Potion(r))))
 		{
-			if(!(r.addItem(new Item(r,"pit"))))
+			if(!(r.addItem(new Pit(r))))
 			{
 				return false;
 			}
@@ -232,7 +238,7 @@ public class Dungeon implements Serializable {
 	}
 
 	public Room getRoom(int x, int y) {
-		return dungeonRooms[y][x];
+		return dungeonRooms[x][y];
 	}
 
 	public void updateHeroLocation(Room room) {
