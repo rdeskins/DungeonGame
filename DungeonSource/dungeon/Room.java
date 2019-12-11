@@ -135,7 +135,7 @@ public class Room implements Serializable {
 		while(itemIterator.hasNext())
 		{
 			String nextType = itemIterator.next().type;
-			if(nextType.equals(I.type))
+			if(nextType.equals(I.type) || itemIterator.next() instanceof Pillar)
 				{
 					return false;
 				}
