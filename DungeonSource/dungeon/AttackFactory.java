@@ -48,10 +48,10 @@ public class AttackFactory {
 			return pool.get(4);
 		case "Sorceress Attack":
 			return pool.get(1);
-		case "Sorcereress Increase HP":
+		case "Sorceress Increase HP":
 			return pool.get(2);
 		case "Thief Surprise Attack":
-			return pool.get(1);
+			return pool.get(3);
 		case "Base Attack":
 			return pool.get(0);
 		default:
