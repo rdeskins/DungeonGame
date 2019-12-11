@@ -22,10 +22,11 @@ class RoomTests {
 			}
 		}
 		
+		//Rooms are room[row][column]
 		roomUpperLeft = rooms[0][0];
 		roomBottomRight = rooms[4][4];
-		roomLeftSide = rooms[0][1];
-		roomRightSide = rooms[4][2];
+		roomLeftSide = rooms[1][0];
+		roomRightSide = rooms[1][4];
 		roomCenter = rooms[2][2];
 	}
 	
@@ -193,6 +194,32 @@ class RoomTests {
 		
 		assertTrue(roomCenter.getNumItems() == 0);
 		assertTrue(roomCenter.getMonster() == null);
+	}
+	
+	@Test
+	void testAddItem() {
+		Room r = new Room(0,0);
+		r.addItem(new Potion(r));
+		assertTrue(r.getItem() instanceof Potion);
+		
+		r = new Room(0,0);
+		r.addItem(new Pillar(r));
+		assertTrue(r.getItem() instanceof Pillar);
+		
+		r = new Room(0,0);
+		r.addItem(new Pit(r));
+		assertTrue(r.getItem() instanceof Pit);
+		
+		assertFalse(r.addItem(new Pillar(r))); //Shouldnt add new pillar to room with items
+		assertFalse(r.addItem(new Pit(r))); //Shouldn't be able to add same item twice
+		
+		//Shouldnt be able to add items to exits and entrances
+		r = new Room(0,0);
+		r.setEntrance();
+		assertFalse(r.addItem(new Potion(r)));
+		r= new Room(0,0);
+		r.setExit();
+		assertFalse(r.addItem(new Potion(r)));
 	}
 
 }
