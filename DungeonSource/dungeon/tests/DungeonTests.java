@@ -78,6 +78,7 @@ class DungeonTests {
 	void testSaveDungeon() {
 		Dungeon expectDungeon = new Dungeon();
 		
+		expectDungeon.createDungeon();
 		expectDungeon.setUpDungeon(new Warrior("Testy boi"));
 		
 		Memento memento = expectDungeon.saveDungeon();
@@ -86,12 +87,14 @@ class DungeonTests {
 		
 		dungeon.loadDungeon(memento);
 		
-		assertTrue(expectDungeon.equals(dungeon));
+		assertTrue(expectDungeon.toString().equals(dungeon.toString()));
 	}
 	
 	@Test
 	void testLoadDungeon() {
 		Dungeon dungeon = new Dungeon();
+		
+		dungeon.createDungeon();
 		
 		dungeon.setUpDungeon(new Warrior("Testy boi"));
 		
@@ -101,7 +104,7 @@ class DungeonTests {
 		
 		expectedDungeon.loadDungeon(memento);
 		
-		assertTrue(expectedDungeon.equals(dungeon));
+		assertTrue(expectedDungeon.toString().equals(dungeon.toString()));
 	}
 
 }
