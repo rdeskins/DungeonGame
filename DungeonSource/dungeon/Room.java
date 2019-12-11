@@ -29,6 +29,8 @@ public class Room implements Serializable {
 	{
 		String room = null;
 		
+		room += "room x: " + this.x + " room y: " + this.y;
+		
 		if(this.x ==  0)
 		{
 			if(this.y == 4)
