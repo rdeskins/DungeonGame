@@ -27,54 +27,47 @@ public class Room implements Serializable {
 	
 	public String toString()
 	{
-		String room = null;
-		
-		room += "room x: " + this.x + " room y: " + this.y;
-		
-		if(this.x ==  0)
+		String room = "";
+
+		//If the room is at the top of the array
+		if(this.x == 0)
 		{
-			if(this.y == 4)
-			{
-				room = "* - *\n*   |\n* * *";
+			if(this.y == 0) {
+				room = "* * *\n*   |\n* - *"; 
 			}
-			else if(this.y == 0)
-			{
-				room = "* * *\n*   |\n* - *";
-			}
-			else
-			{
-				room = "* - *\n*   |\n* - *";
-			}
-			
-		}
-		
-		else if(this.y == 0)
-		{
-			if(this.x == 4)
-			{
-				room = "* * *\n|   *\n* - *"; 
+			else if(this.y == 4) {
+				room = "* * *\n|   *\n* - *";
 			}
 			else
 			{
 				room = "* * *\n|   |\n* - *";
 			}
 		}
-		else if(this.y == 4)
-		{
-			if(this.x == 4)
-			{
-				 room = "* - *\n|   *\n* * *";
-			}
-			else
-			{
-				 room = "* - *\n|   |\n* * *";
-			}
-		}
+		
+		//If the room is at the bottom of the array
 		else if(this.x == 4)
 		{
-			room = "* - *\n|   *\n* - *";
+			if(this.y == 0)
+				room = "* - *\n*   |\n* * *";
+			else if(this.y == 4)
+				room = "* - *\n|   *\n* * *";
+			else
+				room = "* - *\n|   |\n* * *";
 		}
 		
+		//If the room is on the left side of the array
+		else if(this.y == 0)
+		{
+				 room = "* - *\n*   |\n* - *";
+		}
+		
+		//If the room is on the right side of the array
+		else if(this.y == 4)
+		{
+			room = "* - *\n|   *\n* - *"; 
+		}
+		
+		//Interior Room
 		else
 		{
 			room = "* - *\n|   |\n* - *";

@@ -259,15 +259,13 @@ user has the option of quitting.
 		int x = theHero.getPosition().getX();
 		int y = theHero.getPosition().getY();
 		boolean success = false;
-		while(!success)
-		{
+		while(!success) {
 			x = theHero.getPosition().getX();
 			y = theHero.getPosition().getY();
 			System.out.println("Hero x: " + dungeon.getHeroLocation().getX() + " Hero y: " + dungeon.getHeroLocation().getY());
 			System.out.println("enter a movement N,E,S or W"); 
 			String movement = kb.nextLine();
-			if(movement.equals("N")|| movement.equals("n"))
-			{	
+			if(movement.equals("N")|| movement.equals("n")) {	
 				if(x - 1 >= 0)
 				{
 					x--;
@@ -275,24 +273,20 @@ user has the option of quitting.
 				}
 
 			}
-			else if(movement.equals("E")|| movement.equals("e"))
-			{
-				if(y + 1 < dungeon.getDungeonRooms().length)
-				{
+			else if(movement.equals("E")|| movement.equals("e")) {
+				if(y + 1 < dungeon.getDungeonRooms().length) {
 					y++;
 					success = true;
 				}
 			}
-			else if(movement.equals("S")|| movement.equals("s"))
-			{
+			else if(movement.equals("S")|| movement.equals("s")) {
 				if(x + 1 < dungeon.getDungeonRooms().length)
 				{
 					x++;
 					success = true;
 				}
 			}
-			else if(movement.equals("W")|| movement.equals("w"))
-			{
+			else if(movement.equals("W")|| movement.equals("w")) {
 				if(y - 1 >= 0)
 				{
 					y--;
