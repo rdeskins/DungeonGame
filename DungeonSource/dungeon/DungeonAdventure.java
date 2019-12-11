@@ -101,6 +101,7 @@ public class DungeonAdventure
 	    boolean win = false;
 	    while(theHero.isAlive() && !win)
 	    {
+	    	System.out.println(theHero.getPosition());
 	    	if(theHero.getPosition().isEmpty())
 	    	{
 	    		System.out.println("theres nothing in this room ");
@@ -130,6 +131,7 @@ public class DungeonAdventure
 	    			System.out.println("a monster jumps out at " + theHero.getName());
 	    			battle(theHero,theHero.getPosition().getMonster()); 
 	    			theHero.getPosition().emptyRoom();
+	    			System.out.println(theHero.getPosition());
 	    		}
 	    		else if (theHero.getPosition().isEntrance())
 	    		{
@@ -150,7 +152,7 @@ public class DungeonAdventure
 	    		}
 	    	
 	    	}
-	    	if(!win)
+	    	if(!win && theHero.isAlive())
 	    		movement(theHero,dungeon);
 	    }
 	}
@@ -253,6 +255,8 @@ user has the option of quitting.
 		    System.out.println(theHero.getName() + " was victorious!");
 		else if (!theHero.isAlive())
 			System.out.println(theHero.getName() + " was defeated :-(");
+		
+		System.out.flush();
 
 	}//end battle method
 
