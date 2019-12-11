@@ -48,6 +48,8 @@ import java.util.Scanner;
 */
 public class DungeonAdventure
 {
+	private static Hero loadedHero;
+	
 	static Scanner kb = new Scanner(System.in);
 
     public static void main(String[] args)
@@ -65,8 +67,7 @@ public class DungeonAdventure
 	{
 		
 		
-		Hero theHero;
-		theHero = chooseHero();
+		Hero theHero = new MockHero("Initial hero");
 		Dungeon dungeon = new Dungeon();
 		System.out.println("New game or load?");
 		System.out.println("1: New game\n2. Load game");
@@ -74,13 +75,15 @@ public class DungeonAdventure
 	    
 	    if(choice == 2) {
 			DungeonAdventure.loadGame(dungeon, theHero);
+			theHero = loadedHero;
 		}
 		else {
+			theHero = chooseHero();
 			dungeon.createDungeon();
 			dungeon.setUpDungeon(theHero);
 		}
 	    
-	    kb.nextLine();
+	    System.out.flush();
 		
 	    System.out.println("the mighty " + theHero.name + " enters the dungeon " );
 	    
@@ -89,6 +92,7 @@ public class DungeonAdventure
 	    boolean win = false;
 	    while(theHero.isAlive() && !win)
 	    {
+	    	System.out.println("theHero object: " + theHero);
 	    	System.out.println(theHero.getPosition());
 	    	if(theHero.getPosition().isEmpty())
 	    	{
@@ -180,6 +184,7 @@ this task
 		String name;
 		System.out.print("Enter character name: ");
 		name = kb.nextLine();
+		System.out.flush();
 		switch(choice)
 		{
 			case 1: return HeroFactory.createHero("Warrior", name);
@@ -281,6 +286,7 @@ user has the option of quitting.
 			x = theHero.getPosition().getX();
 			y = theHero.getPosition().getY();
 			System.out.println("enter a movement N, E, S, or W"); 
+			System.out.println("Or \"r\" to save the game");
 			String movement = kb.nextLine();
 			if(movement.equals("N")|| movement.equals("n")) {	
 				if(x - 1 >= 0) {
@@ -312,6 +318,13 @@ user has the option of quitting.
 			{
 				System.out.println(dungeon);
 			}
+			//Secret command for displaying whole dungeon
+			else if(movement.toLowerCase().equals("r"))
+			{
+				System.out.println("Saving game");
+				saveGame(dungeon, theHero);
+				System.out.println("Game saved!");
+			}
 			else
 			{
 				System.out.println("try again!");
@@ -333,7 +346,9 @@ user has the option of quitting.
 		Memento heroFileMemento = new FileMemento("HeroState.txt");
 		
 		dungeon.loadDungeon(dungeonFileMemento);
-		hero.loadHero(heroFileMemento);
+		loadedHero = hero.loadHero(heroFileMemento);
+		
+		dungeon.updateHeroLocation(loadedHero.getPosition());
 	}
 	
 }//end Dungeon class
