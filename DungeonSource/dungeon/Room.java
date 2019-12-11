@@ -131,15 +131,24 @@ public class Room implements Serializable {
 	
 	public boolean addItem(Item I)
 	{
+		if (this.isEntrance() || this.isExit())
+			return false;
+		else if (this.getItem() instanceof Pillar)
+			return false;
+		else if (this.getNumItems() > 0 && I instanceof Pillar)
+			return false;
+		
 		Iterator <Item> itemIterator = items.iterator();
 		while(itemIterator.hasNext())
 		{
-			String nextType = itemIterator.next().type;
-			if(nextType.equals(I.type) || itemIterator.next() instanceof Pillar)
-				{
-					return false;
-				}
+			Item nextItem = itemIterator.next();
+			String nextType = nextItem.type;
+			if(nextType.equals(I.type))
+			{
+				return false;
+			}
 		}
+		
 		items.add(I);
 		return true;
 	}
