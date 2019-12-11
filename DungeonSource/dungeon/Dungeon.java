@@ -45,76 +45,76 @@ public class Dungeon implements Serializable {
 		this.heroLocation = new Room(x,y);
 		dungeonRooms[x][y] = heroLocation;
 	}
+	
 	public void setUpDungeon(Hero hero)
 	{
+		Random RAND = new Random(); 
 		
+		//Setting entrance to hero's current location
 		hero.setPosition(this.heroLocation);
-		
 		this.heroLocation.setEntrance();
 		
-		Room newRoom;
-		Random RAND = new Random(); 
+		//Setting exit
+		Room exitRoom;
 		int x = RAND.nextInt(4);
 		int y = RAND.nextInt(4);
-		int i = 0;
 		boolean success = false;
 		while(!success)
 		{
 			x = RAND.nextInt(4);
 			y = RAND.nextInt(4);
-			newRoom = new Room(x,y);
+			exitRoom = new Room(x,y);
 			if(!(heroLocation.getX() == x) && !((heroLocation.getY() == y)))
 				{
-					setExit(newRoom);
-					dungeonRooms[x][y] = newRoom;
+					setExit(exitRoom);
+					dungeonRooms[x][y] = exitRoom;
 					success = true;
 				}
 			
 		}
-		i =0;
-
-		//Add pillars
+		
+		//Adding 4 pillars
+		int i =0;
 		while(i < 4)
 		{
 			x = RAND.nextInt(5);
 			y = RAND.nextInt(5);
 			if(dungeonRooms[x][y].isEmpty())
 			{
-				addPillars(dungeonRooms[x][y]);
-				i++;
+				if (addPillars(dungeonRooms[x][y]));
+					i++;
 			}
 			
 		}
 		i=0;
-		//add monsters
-		while(i < 3)
-		{
-			x = RAND.nextInt(5);
-			y = RAND.nextInt(5);
-			newRoom = new Room(x,y);
-			if(dungeonRooms[x][y].isEmpty())
-			{
-				addMonsters(newRoom);
-				dungeonRooms[x][y] = newRoom;
-				i++;
-			}
-			
-		}
-		i=0;
-		//add items
-		while(i < 4)
-		{
-			x = RAND.nextInt(5);
-			y = RAND.nextInt(5);
-			if(dungeonRooms[x][y].isEmpty())
-			{
-				addItems(dungeonRooms[x][y]);
-				i++;
+		
+		//Adding monsters
+		for (x = 0; x < 5; x++) {
+			for (y = 0; y < 5; y++) {
+				int rng = RAND.nextInt(10);
+				if (rng <= 1) { //20% chance to spawn monster
+					addMonsters(dungeonRooms[x][y]);
+				}
 			}
 		}
 		
-		
-		
+		//Adding items
+		for (x = 0; x < 5; x++) {
+			for (y= 0; y < 5; y++) {
+				int rng = RAND.nextInt(10);
+				if (rng == 0){ //10% chance of Potion
+					Potion potion = new Potion(dungeonRooms[x][y]);
+					dungeonRooms[x][y].addItem(potion);
+				}
+				
+				rng = RAND.nextInt(10);
+				if (rng == 0) { //10% chance of Pit independent of Potion
+					Pit pit = new Pit(dungeonRooms[x][y]);
+					dungeonRooms[x][y].addItem(pit);
+				}
+			}
+		}
+	
 	}
 
 	public  String toString()

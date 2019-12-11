@@ -59,7 +59,12 @@ public abstract class Hero extends DungeonCharacter
   }
   
   //Robin Deskins Note: This is for testing purposes to bypass the RNG of blocking/not blocking
-  public void setChanceToBlock(int blockChance) {
+  //Block chance getters/setters are also called by DungeonAdventure getItem method
+  public double getChanceToBlock() {
+	  return this.chanceToBlock;
+  }
+  
+  public void setChanceToBlock(double blockChance) {
 	  this.chanceToBlock = blockChance;
   }
   
