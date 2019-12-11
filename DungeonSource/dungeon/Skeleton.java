@@ -16,10 +16,6 @@ public class Skeleton extends Monster
     public Skeleton()
 	{
 		super("Sargath the Skeleton", 100, 3, .8, .3, 30, 50, 30, 50);
-		this.healBehavior = new MonsterBasicHealBehavior();
-		
-		AttackFactory attacks = AttackFactory.getAttackFactory();
-		this.attackBehavior = attacks.getAttack("Base Attack");
     }//end constructor
 
 	public void attack(DungeonCharacter opponent)

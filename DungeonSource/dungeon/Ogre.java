@@ -16,11 +16,6 @@ public class Ogre extends Monster
     public Ogre()
 	{
 		super("Oscar the Ogre", 200, 2, .6, .1, 30, 50, 30, 50);
-		this.healBehavior = new MonsterBasicHealBehavior();
-		
-		AttackFactory attacks = AttackFactory.getAttackFactory();
-		this.attackBehavior = attacks.getAttack("Base Attack");
-
     }//end constructor
 
 	public void attack(DungeonCharacter opponent)
