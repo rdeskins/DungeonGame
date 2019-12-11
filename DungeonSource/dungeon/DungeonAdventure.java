@@ -72,6 +72,7 @@ public class DungeonAdventure
 		System.out.println("New game or load?");
 		System.out.println("1: New game\n2. Load game");
 		int choice = kb.nextInt();
+	    System.out.flush();
 	    
 	    if(choice == 2) {
 			DungeonAdventure.loadGame(dungeon, theHero);
@@ -82,8 +83,6 @@ public class DungeonAdventure
 			dungeon.createDungeon();
 			dungeon.setUpDungeon(theHero);
 		}
-	    
-	    System.out.flush();
 		
 	    System.out.println("the mighty " + theHero.name + " enters the dungeon " );
 	    
@@ -92,8 +91,6 @@ public class DungeonAdventure
 	    boolean win = false;
 	    while(theHero.isAlive() && !win)
 	    {
-	    	System.out.println("theHero object: " + theHero);
-	    	System.out.println(theHero.getPosition());
 	    	if(theHero.getPosition().isEmpty())
 	    	{
 	    		System.out.println("theres nothing in this room ");
