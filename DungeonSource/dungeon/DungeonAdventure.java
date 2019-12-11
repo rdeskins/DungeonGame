@@ -1,4 +1,5 @@
 package dungeon;
+import java.io.File;
 import java.util.Scanner;
 
 /**
@@ -55,7 +56,7 @@ public class DungeonAdventure
     public static void main(String[] args)
 	{
 
-		System.out.print("Welcome to the pillars of OO a dungeon adventure game!");
+		System.out.println("Welcome to the pillars of OO a dungeon adventure game!");
 		do
 		{
 		    play();
@@ -69,12 +70,21 @@ public class DungeonAdventure
 		
 		Hero theHero = new MockHero("Initial hero");
 		Dungeon dungeon = new Dungeon();
-		System.out.println("New game or load?");
-		System.out.println("1: New game\n2. Load game");
+		
+		
+		if(saveFilesExist()) {
+			System.out.println("New game or load?");
+			System.out.println("1: New game\n2. Load game");
+		}
+		else
+		{
+			System.out.println("New game?");
+			System.out.println("1: New game");
+		}
 		int choice = kb.nextInt();
 	    System.out.flush();
 	    
-	    if(choice == 2) {
+	    if(choice == 2 && saveFilesExist()) {
 			DungeonAdventure.loadGame(dungeon, theHero);
 			theHero = loadedHero;
 		}
@@ -346,6 +356,14 @@ user has the option of quitting.
 		loadedHero = hero.loadHero(heroFileMemento);
 		
 		dungeon.updateHeroLocation(loadedHero.getPosition());
+
+	}
+	
+	private static boolean saveFilesExist() {
+		File dungeonFile = new File("DungeonState.txt");
+		File heroFile = new File("HeroState.txt");
+		
+		return (dungeonFile.exists() && heroFile.exists());
 	}
 	
 }//end Dungeon class
