@@ -21,7 +21,7 @@ public class Thief extends Hero
 
 		AttackFactory attacks = AttackFactory.getAttackFactory();
 		
-		AttackBehavior[] thiefAttacks = {attacks.getAttack("Thief Attack"), 
+		AttackBehavior[] thiefAttacks = {attacks.getAttack("Base Attack"), 
 				attacks.getAttack("Thief Surprise Attack")};
 		this.setAttackBehaviors(thiefAttacks);
 		

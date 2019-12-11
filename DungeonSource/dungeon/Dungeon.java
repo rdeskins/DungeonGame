@@ -76,7 +76,6 @@ public class Dungeon implements Serializable {
 		//Add pillars
 		while(i < 4)
 		{
-			System.out.println("Adding pillars");
 			x = RAND.nextInt(5);
 			y = RAND.nextInt(5);
 			if(dungeonRooms[x][y].isEmpty())
@@ -130,7 +129,6 @@ public class Dungeon implements Serializable {
 			j =0;
 			while(j < 5)
 			{
-				System.out.println("this.x: " + j + "this.y: " + i);
 				dungeon += dungeonRooms[i][j].stringTop();
 				j++;
 			}

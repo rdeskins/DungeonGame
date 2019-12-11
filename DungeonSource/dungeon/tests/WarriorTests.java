@@ -5,27 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import dungeon.AttackBehavior;
-import dungeon.AttackFactory;
-import dungeon.DungeonCharacter;
-import dungeon.Hero;
-import dungeon.Ogre;
 import dungeon.Warrior;
 
 class WarriorTests {
-
-	@Test
-	void warriorAttackDamagesOpponent() {
-		Hero warTest = new Warrior("testy boi");
-	
-		DungeonCharacter testOgre = new Ogre();
-		
-		int hitPoints = testOgre.getHitPoints();
-		
-		warTest.attack(testOgre);
-		
-		assertNotEquals(hitPoints, testOgre.getHitPoints());
-	}
 	
 	@Test
 	void warriorConstructorReturnsWarrior() {
@@ -35,7 +17,7 @@ class WarriorTests {
 	@Test
 	void warriorConstructorNullNameThrowsException() {
 		
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {Hero warTest = new Warrior(null);});
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {new Warrior(null);});
 	}
 
 }

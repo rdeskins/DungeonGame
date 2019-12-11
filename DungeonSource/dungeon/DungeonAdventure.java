@@ -258,14 +258,18 @@ user has the option of quitting.
 		}
 		else if(item instanceof Pit)
 		{
-			System.out.println("The hero fell into a pit! " + theHero.getName() + " takes 10 damage.");
-			theHero.subtractHitPoints(10);
+			Pit pitItem = (Pit)item;
+			int damageDone = pitItem.damage();
+			theHero.subtractHitPoints(damageDone);
+			System.out.println("The hero fell into a pit! " + theHero.getName() + " takes " + damageDone + " damage.");
 		}
 		else if(item instanceof Potion)
 		{
-			System.out.println("The hero found a healing potion! " + theHero.getName() + " Hitpoints increased");
+			Potion potionItem = (Potion)item;
+			int healingDone = potionItem.heal();
+			theHero.addHitPoints(healingDone);
+			System.out.println("The hero found a healing potion! " + theHero.getName() + " Hitpoints increased by " + healingDone + ".");
 			theHero.healPotionsFound++;
-			theHero.hitPoints += 10;
 		}
 	}
 
