@@ -72,9 +72,11 @@ public class Dungeon implements Serializable {
 			
 		}
 		i =0;
-		//add pillars
+
+		//Add pillars
 		while(i < 4)
 		{
+			System.out.println("Adding pillars");
 			x = RAND.nextInt(5);
 			y = RAND.nextInt(5);
 			if(dungeonRooms[x][y].isEmpty())
@@ -165,7 +167,7 @@ public class Dungeon implements Serializable {
 	}
 	private boolean addPillars(Room r)
 	{
-		return r.addItem(new Item(r,"pillar"));
+		return r.addItem(new Pillar(r));
 	}
 	private boolean addMonsters(Room r)
 	{
@@ -178,9 +180,9 @@ public class Dungeon implements Serializable {
 	}
 	private boolean addItems(Room r)
 	{
-		if(!(r.addItem(new Item(r,"potion"))))
+		if(!(r.addItem(new Potion(r))))
 		{
-			if(!(r.addItem(new Item(r,"pit"))))
+			if(!(r.addItem(new Pit(r))))
 			{
 				return false;
 			}

@@ -77,12 +77,12 @@ public class Room implements Serializable {
 		String s;
 		if (this.getNumItems() > 1)
 			s = "M";
+		else if (this.getItem() instanceof Pillar)
+			s = "L";
 		else if (this.getItem() instanceof Potion)
 			s = "H";
 		else if (this.getItem() instanceof Pit)
 			s = "P";
-		else if (this.getItem() instanceof Pillar)
-			s = "L";
 		else if (this.isEntrance())
 			s = "I";
 		else if (this.isExit())
@@ -135,7 +135,7 @@ public class Room implements Serializable {
 		while(itemIterator.hasNext())
 		{
 			String nextType = itemIterator.next().type;
-			if(nextType.equals(I.type) || nextType.equals("pillar"))
+			if(nextType.equals(I.type))
 				{
 					return false;
 				}
