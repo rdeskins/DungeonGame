@@ -127,7 +127,7 @@ public class DungeonAdventure
 	    				int numItems = theHero.getPosition().getNumItems();
 	    				while(numItems > 0)
 	    				{
-	    					Item item = theHero.getPosition().getItem(numItems);
+	    					Item item = theHero.getPosition().getItem(numItems - 1);
 	    					getItem(item,theHero,dungeon);
 	    				}
 	    			}	
