@@ -1,0 +1,16 @@
+Welcome to Dungeon Adventure! This game is set in a dungeon, where you choose a hero with unique abilities and fight your way to find all four pillars of OO.
+To start, you can start a new game or load a previously saved one.
+If you are starting a new game, you will pick from the list of heros, and enter your name. You will then be dropped into a room of the dungeon.
+-------------------------------------------------------------------
+From there you can travel North, South, East, or West. If you reach an edge of the dungeon you will have to turn around and move elsewhere.
+At any point of the game during the movement phase, you can save your current state by pressing the "r" key.
+If you encounter an enemy, you will start a battle sequence.
+In this battle sequence, you may choose from your arsenal of attacks.
+Most attacks have a chance to hit, so you are not guaranteed to do damage to your foe. Likewise, when an enemy attacks you, you have a chance to block, negating any possible damage from the enemy.
+You can either kill your enemy, or perish in the dungeon, never to be heard from again.
+-------------------------------------------------------------------
+You can also encounter items in the dungeon! Some items, such as healing potions or vision potions, grant you an advantage through increased health or the ability to peek at the dungeon rooms around you.
+If you however encounter a pit, you will take damage (pits with wooden spikes generally do that).
+-------------------------------------------------------------------
+Should you best your foes and survive the perils of the dungeon to collect the pillars, you will then have to find the exit!
+If you wish to play again, and chance certain death, you may enter "y". Good luck, adventurer, you will need it.
