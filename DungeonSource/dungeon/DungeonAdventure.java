@@ -129,13 +129,13 @@ public class DungeonAdventure
 	    				while(numItems > 0)
 	    				{
 	    					Item item = theHero.getPosition().getItem(numItems);
-	    					getItem(item,theHero);
+	    					getItem(item,theHero,dungeon);
 	    				}
 	    			}	
 	    			else
 	    			{
 	    				Item item = theHero.getPosition().getItem();
-	    				getItem(item,theHero);
+	    				getItem(item,theHero,dungeon);
 	    			}
 	    			theHero.getPosition().emptyRoom();
 	    		}
@@ -275,10 +275,11 @@ user has the option of quitting.
 
 	}//end battle method
 
-	private static void getItem(Item item, Hero theHero) {
+	private static void getItem(Item item, Hero theHero, Dungeon dungeon) {
 		if(item instanceof Pillar)
 		{
-			System.out.println("the hero found a pillar of OO! " + theHero.getName() + " has found " + ++theHero.pillarsFound + " pillars so far");
+			theHero.increasePillarsFound();
+			System.out.println("the hero found a pillar of OO! " + theHero.getName() + " has found " + theHero.getPillarsFound() + " pillars so far");
 		}
 		else if(item instanceof Pit)
 		{
@@ -299,7 +300,12 @@ user has the option of quitting.
 			int healingDone = potionItem.heal();
 			theHero.addHitPoints(healingDone);
 			System.out.println("The hero found a healing potion! " + theHero.getName() + " Hitpoints increased by " + healingDone + ".");
-			theHero.healPotionsFound++;
+			theHero.increaseHealPotionsFound();
+		}
+		else if (item instanceof VisionPotion) {
+			System.out.println("The hero found a vision potion!");
+			System.out.println(dungeon.surroundingRoomsToString(dungeon.getHeroLocation()));
+			theHero.increaseVisionPotionsFound();
 		}
 	}
 
