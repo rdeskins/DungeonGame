@@ -83,6 +83,8 @@ public class Room implements Serializable {
 			s = "H";
 		else if (this.getItem() instanceof Pit)
 			s = "P";
+		else if (this.getItem() instanceof VisionPotion)
+			s = "V";
 		else if (this.isEntrance())
 			s = "I";
 		else if (this.isExit())
@@ -166,8 +168,8 @@ public class Room implements Serializable {
 	}
 	
 	public void addMonster() {
-
-		this.monster = MonsterFactory.createMonster();
+		if (!isEntrance() && !isExit())
+			this.monster = MonsterFactory.createMonster();
 	}
 	
 	public int getNumItems()
