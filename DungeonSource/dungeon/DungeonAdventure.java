@@ -269,7 +269,13 @@ user has the option of quitting.
 		{
 			Pit pitItem = (Pit)item;
 			int damageDone = pitItem.damage();
+			
+			//This is to stop the hero from blocking the attack from the pit
+			double blockChance = theHero.getChanceToBlock();
+			theHero.setChanceToBlock(0);
 			theHero.subtractHitPoints(damageDone);
+			theHero.setChanceToBlock(blockChance);
+			
 			System.out.println("The hero fell into a pit! " + theHero.getName() + " takes " + damageDone + " damage.");
 		}
 		else if(item instanceof Potion)
