@@ -127,8 +127,9 @@ public class DungeonAdventure
 	    				int numItems = theHero.getPosition().getNumItems();
 	    				while(numItems > 0)
 	    				{
-	    					Item item = theHero.getPosition().getItem(numItems);
+	    					Item item = theHero.getPosition().getItem(numItems - 1);
 	    					getItem(item,theHero,dungeon);
+	    					numItems -=1;
 	    				}
 	    			}	
 	    			else
@@ -234,7 +235,7 @@ true if the user chooses to continue, false otherwise.
 		String again;
 
 		System.out.println("Play again (y/n)?");
-		again = kb.next();
+		again = kb.nextLine();
 		
 		//Updates playAgain() method to handle proper string input reading
 		return (again.equals("Y") || again.equals("y"));
