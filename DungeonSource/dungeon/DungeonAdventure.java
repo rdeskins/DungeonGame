@@ -129,6 +129,7 @@ public class DungeonAdventure
 	    				{
 	    					Item item = theHero.getPosition().getItem(numItems - 1);
 	    					getItem(item,theHero,dungeon);
+	    					numItems -=1;
 	    				}
 	    			}	
 	    			else
