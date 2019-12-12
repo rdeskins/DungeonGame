@@ -111,8 +111,6 @@ public class DungeonAdventure
 		
 	    System.out.println("the mighty " + theHero.name + " enters the dungeon " );
 	    
-	    System.out.println(dungeon.toString());
-	    
 	    boolean win = false;
 	    while(theHero.isAlive() && !win)
 	    {
@@ -170,6 +168,8 @@ public class DungeonAdventure
 	    	if(!win && theHero.isAlive())
 	    		movement(theHero,dungeon);
 	    }
+	    
+	System.out.println(dungeon);
 	}
 /*-------------------------------------------------------------------
 chooseHero allows the user to select a hero, creates that hero, and
