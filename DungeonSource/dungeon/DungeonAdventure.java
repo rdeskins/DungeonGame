@@ -96,8 +96,7 @@ public class DungeonAdventure
 			System.out.println("New game?");
 			System.out.println("1: New game");
 		}
-		int choice = kb.nextInt();
-	    System.out.flush();
+		int choice = Integer.parseInt(kb.nextLine());
 	    
 	    if(choice == 2 && saveFilesExist()) {
 			DungeonAdventure.loadGame(dungeon, theHero);
