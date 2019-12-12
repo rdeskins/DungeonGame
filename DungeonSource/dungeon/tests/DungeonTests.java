@@ -106,5 +106,58 @@ class DungeonTests {
 		
 		assertTrue(expectedDungeon.toString().equals(dungeon.toString()));
 	}
+	
+	@Test
+	void testSurroundingRoomsToString() {
+		Dungeon dungeon = new Dungeon();
+		dungeon.createDungeon();
+		Room[][] rooms = dungeon.getDungeonRooms();
+		String res;
+		
+		res = dungeon.surroundingRoomsToString(rooms[0][0]);
+		assertEquals(res,
+				 "* * ** * *\n"
+				+"* E || E |\n"
+				+"* - ** - *\n"
+				+"* - ** - *\n"
+				+"* E || E |\n"
+				+"* - ** - *\n");
+		
+		res = dungeon.surroundingRoomsToString(rooms[1][1]);
+		assertEquals(res,
+				 "* * ** * ** * *\n"
+				+"* E || E || E |\n"
+				+"* - ** - ** - *\n"
+				+"* - ** - ** - *\n"
+				+"* E || E || E |\n"
+				+"* - ** - ** - *\n"
+				+"* - ** - ** - *\n"
+				+"* E || E || E |\n"
+				+"* - ** - ** - *\n");
+		
+		res = dungeon.surroundingRoomsToString(rooms[3][3]);
+		assertEquals(res,
+				 "* - ** - ** - *\n"
+				+"| E || E || E *\n"
+				+"* - ** - ** - *\n"
+				+"* - ** - ** - *\n"
+				+"| E || E || E *\n"
+				+"* - ** - ** - *\n"
+				+"* - ** - ** - *\n"
+				+"| E || E || E *\n"
+				+"* * ** * ** * *\n");
+		
+		res = dungeon.surroundingRoomsToString(rooms[3][4]);
+		assertEquals(res,
+				 "* - ** - *\n"
+				+"| E || E *\n"
+				+"* - ** - *\n"
+				+"* - ** - *\n"
+				+"| E || E *\n"
+				+"* - ** - *\n"
+				+"* - ** - *\n"
+				+"| E || E *\n"
+				+"* * ** * *\n");
+	}
 
 }

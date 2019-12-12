@@ -71,6 +71,12 @@ class RoomTests {
 				   + "* - *", roomCenter.toString());
 		roomCenter.emptyRoom();
 		
+		roomCenter.addItem(new VisionPotion(roomCenter));
+		assertEquals("* - *\n"
+				   + "| V |\n"
+				   + "* - *", roomCenter.toString());
+		roomCenter.emptyRoom();
+		
 		roomCenter.addItem(new Pillar(roomCenter));
 		assertEquals("* - *\n"
 				   + "| L |\n"
