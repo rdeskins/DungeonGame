@@ -112,6 +112,12 @@ public class Dungeon implements Serializable {
 					Pit pit = new Pit(dungeonRooms[x][y]);
 					dungeonRooms[x][y].addItem(pit);
 				}
+				
+				rng = RAND.nextInt(10);
+				if (rng == 0) { //10% chance of Pit independent of Potion
+					VisionPotion vPotion = new VisionPotion(dungeonRooms[x][y]);
+					dungeonRooms[x][y].addItem(vPotion);
+				}
 			}
 		}
 	
@@ -235,5 +241,62 @@ public class Dungeon implements Serializable {
 
 	public void updateHeroLocation(Room room) {
 		this.heroLocation = room;
+	}
+	
+	public String surroundingRoomsToString(Room r) {
+		//This is to prevent from printing outside of the Room array
+		int startX, endX, startY, endY;
+		if (r.getX() == 0)
+			startX = 0;
+		else
+			startX = r.getX() -1;
+		if (r.getX() == 4)
+			endX = 4;
+		else
+			endX = r.getX() +1;
+		
+		if (r.getY() == 0)
+			startY = 0;
+		else
+			startY = r.getY() -1;
+		if (r.getY() == 4)
+			endY = 4;
+		else
+			endY = r.getY() +1;
+		
+		//System.out.println(startX +""+ endX+ "" +startY + "" +endY);
+		//Now print rooms from Room[startX][startY] to Room[endX][endY]
+		String dungeon = "";
+		
+		int i = startX;
+		int j = startY;
+		
+		while(i < endX+1)
+		{
+			j =startY;
+			while(j < endY+1)
+			{
+				dungeon += dungeonRooms[i][j].stringTop();
+				j++;
+			}
+			dungeon += "\n";
+			j =startY;
+			while(j < endY+1)
+			{
+				dungeon += dungeonRooms[i][j].stringMid();
+				j++;
+			}
+			dungeon += "\n";
+			j =startY;
+			while(j < endY+1)
+			{
+				dungeon += dungeonRooms[i][j].stringBottom();
+				j++;
+			}
+			dungeon += "\n";
+			i++;
+			
+		}
+		return dungeon;
 	}
 }
