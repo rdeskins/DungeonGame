@@ -1,5 +1,6 @@
 package dungeon;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -56,7 +57,21 @@ public class DungeonAdventure
     public static void main(String[] args)
 	{
 
-		System.out.println("Welcome to the pillars of OO a dungeon adventure game!");
+    	try
+    	{
+    		File dungeonTutorialReader = new File("dungeonGameExplanation.txt");
+    		Scanner dungeonTutorialScanner = new Scanner(dungeonTutorialReader);
+    		
+    		while(dungeonTutorialScanner.hasNext())
+    			System.out.println(dungeonTutorialScanner.nextLine());
+    		
+    		System.out.println();
+    	}
+    	catch(FileNotFoundException ex)
+    	{
+    		System.out.println("DungeonAdventureMain tutorial file not found");
+    	}
+		
 		do
 		{
 		    play();
@@ -95,8 +110,6 @@ public class DungeonAdventure
 		}
 		
 	    System.out.println("the mighty " + theHero.name + " enters the dungeon " );
-	    
-	    System.out.println(dungeon.toString());
 	    
 	    boolean win = false;
 	    while(theHero.isAlive() && !win)
@@ -155,6 +168,8 @@ public class DungeonAdventure
 	    	if(!win && theHero.isAlive())
 	    		movement(theHero,dungeon);
 	    }
+	    
+	System.out.println(dungeon);
 	}
 /*-------------------------------------------------------------------
 chooseHero allows the user to select a hero, creates that hero, and
