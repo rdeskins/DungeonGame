@@ -234,7 +234,7 @@ true if the user chooses to continue, false otherwise.
 		String again;
 
 		System.out.println("Play again (y/n)?");
-		again = kb.next();
+		again = kb.nextLine();
 		
 		//Updates playAgain() method to handle proper string input reading
 		return (again.equals("Y") || again.equals("y"));
