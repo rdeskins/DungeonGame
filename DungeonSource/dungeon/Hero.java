@@ -177,7 +177,7 @@ This method is called by: external sources
 
 			
 			//While the choice is outside of the range of the possible attacks array
-			while(choice < 0 || choice > attackBehaviors.length)
+			while(choice < 1 || choice > attackBehaviors.length)
 			{
 				try
 				{
