@@ -83,6 +83,18 @@ public abstract class Hero extends DungeonCharacter
   public int getPillarsFound() {
 	  return this.pillarsFound;
   }
+  
+  public void increaseHealPotionsFound() {
+	  this.healPotionsFound++;
+  }
+  
+  public void increaseVisionPotionsFound() {
+	  this.visionPotionsFound++;
+  }
+  
+  public void increasePillarsFound() {
+	  this.pillarsFound++;
+  }
 
 /*-------------------------------------------------------
 readName obtains a name for the hero from the user
