@@ -5,7 +5,7 @@ A text based RPG that generates a dungeon for the player character to traverse, 
 Install Java, compile the files, and run DungeonAdventure.java to play the game.
 
 ## Tests
-All tests in the [tests folder](https://github.com/rdeskins/DungeonGame/tree/master/DungeonSource/dungeon/tests) are JUnit tests. 
+All tests use the [JUnit](https://junit.org/junit5/) framework. 
 
 ## Authors
 **Robin Deskins** - [rdeskins](https://github.com/rdeskins/)\
